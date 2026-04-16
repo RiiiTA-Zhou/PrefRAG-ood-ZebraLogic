@@ -1,0 +1,32 @@
+Suppose you are an expert in Z3Py. Given declarations for a Z3Py program, translate each natural language sentence into an Z3Py precondition. During translation, stick to the declarations. Output each precondition without line breaks, and follow the format in the example. For each precondition, declare the needed Z3 constants.
+------
+Example:
+# Declarations
+# Each of five students—Hubert, Lori, Paul, Regina, and Sharon—will visit exactly one of three cities—Montreal, Toronto, or Vancouver—for the month of March.
+students_sort, (Hubert, Lori, Paul, Regina, Sharon) = EnumSort('students', ['Hubert', 'Lori', 'Paul', 'Regina', 'Sharon'])
+cities_sort, (Montreal, Toronto, Vancouver) = EnumSort('cities', ['Montreal', 'Toronto', 'Vancouver'])
+students = [Hubert, Lori, Paul, Regina, Sharon]
+cities = [Montreal, Toronto, Vancouver]
+visit = Function('visit', students_sort, cities_sort)
+pre_conditions = []
+# Sentences
+Each of five students—Hubert, Lori, Paul, Regina, and Sharon—will visit exactly one of three cities—Montreal, Toronto, or Vancouver—for the month of March.
+###
+Sharon visits a different city than Paul.
+###
+Hubert visits the same city as Regina.
+# Translation
+# Each of five students—Hubert, Lori, Paul, Regina, and Sharon—will visit exactly one of three cities—Montreal, Toronto, or Vancouver—for the month of March.
+s = Const('s', students_sort)
+c = Const('c', cities_sort)
+pre_conditions.append(ForAll([s], Exists([c], visit(s) == c)))
+# Sharon visits a different city than Paul.
+pre_conditions.append(visit(Sharon) != visit(Paul))
+# Hubert visits the same city as Regina.
+pre_conditions.append(visit(Hubert) == visit(Regina))
+------
+Now translate the given sentences.
+[[DECLARATION]]
+# Sentences
+[[NLSENTENCES]]
+# Translation

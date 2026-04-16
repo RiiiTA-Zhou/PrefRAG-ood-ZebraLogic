@@ -1,0 +1,208 @@
+Given a problem description and a question, the task is to formulate the problem as a Z3 logic program using python API, consisting three parts: Declarations, Constraints, and Options.
+Declarations: Declare the variables and functions.
+Pre-conditions: Write the constraints in the problem description as logic formulas.
+Question and Options: Write the options in the question as logic formulas.
+For each option, use a custom python function to check the option's values.
+Do not give further explanation, output the code directly.
+------
+Example #1
+Context:
+On Tuesday Vladimir and Wendy each eat exactly four separate meals: breakfast, lunch, dinner, and a snack. The following is all that is known about what they eat during that day: At no meal does Vladimir eat the same kind of food as Wendy. Neither of them eats the same kind of food more than once during the day. For breakfast, each eats exactly one of the following: hot cakes, poached eggs, or omelet. For lunch, each eats exactly one of the following: fish, hot cakes, macaroni, or omelet. For dinner, each eats exactly one of the following: fish, hot cakes, macaroni, or omelet. For a snack, each eats exactly one of the following: fish or omelet. Wendy eats an omelet for lunch.
+Question:
+Vladimir must eat which one of the following foods?
+Choices:
+(A) fish
+(B) hot cakes
+(C) macaroni
+(D) omelet
+(E) poached eggs
+###
+Code:
+```python
+# Declarations
+# Context: On Tuesday Vladimir and Wendy each eat exactly four separate meals: breakfast, lunch, dinner, and a snack.
+people_sort, (Vladimir, Wendy) = EnumSort('people', ['Vladimir', 'Wendy'])
+meals_sort, (breakfast, lunch, dinner, snack) = EnumSort('meals', ['breakfast', 'lunch', 'dinner', 'snack'])
+foods_sort, (fish, hot_cakes, macaroni, omelet, poached_eggs) = EnumSort('foods', ['fish', 'hot_cakes', 'macaroni', 'omelet', 'poached_eggs'])
+people = [Vladimir, Wendy]
+meals = [breakfast, lunch, dinner, snack]
+foods = [fish, hot_cakes, macaroni, omelet, poached_eggs]
+eats = Function('eats', people_sort, meals_sort, foods_sort)
+
+# Constraints
+pre_conditions = []
+# CONSTRAINT: At no meal does Vladimir eat the same kind of food as Wendy
+m = Const('m', meals_sort)
+pre_conditions.append(ForAll([m], eats(Vladimir, m) != eats(Wendy, m)))
+# CONSTRAINT: Neither of them eats the same kind of food more than once during the day
+p = Const('p', people_sort)
+f = Const('f', foods_sort)
+pre_conditions.append(ForAll([p, f], Sum([eats(p, m) == f for m in meals]) <= 1))
+# CONSTRAINT: For breakfast, each eats exactly one of the following: hot cakes, poached eggs, or omelet
+p = Const('p', people_sort)
+pre_conditions.append(ForAll([p], Or(eats(p, breakfast) == hot_cakes, eats(p, breakfast) == poached_eggs, eats(p, breakfast) == omelet)))
+# CONSTRAINT: For lunch, each eats exactly one of the following: fish, hot cakes, macaroni, or omelet
+p = Const('p', people_sort)
+pre_conditions.append(ForAll([p], Or(eats(p, lunch) == fish, eats(p, lunch) == hot_cakes, eats(p, lunch) == macaroni, eats(p, lunch) == omelet)))
+# CONSTRAINT: For dinner, each eats exactly one of the following: fish, hot cakes, macaroni, or omelet
+p = Const('p', people_sort)
+pre_conditions.append(ForAll([p], Or(eats(p, dinner) == fish, eats(p, dinner) == hot_cakes, eats(p, dinner) == macaroni, eats(p, dinner) == omelet)))
+# CONSTRAINT: For a snack, each eats exactly one of the following: fish or omelet
+p = Const('p', people_sort)
+pre_conditions.append(ForAll([p], Or(eats(p, snack) == fish, eats(p, snack) == omelet)))
+# CONSTRAINT: Wendy eats an omelet for lunch
+pre_conditions.append(eats(Wendy, lunch) == omelet)
+
+# Options
+# Question: Vladimir must eat which one of the following foods?
+def is_valid(option_constraints):
+    solver = Solver()
+    solver.add(pre_conditions)
+    solver.add(Not(option_constraints))
+    return solver.check() == unsat
+# OPTION (A) fish 
+m = Const('m', meals_sort)
+if is_valid(Exists([m], eats(Vladimir, m) == fish)): print('(A)')
+# OPTION (B) hot cakes
+m = Const('m', meals_sort)
+if is_valid(Exists([m], eats(Vladimir, m) == hot_cakes)): print('(B)')
+# OPTION (C) macaroni
+m = Const('m', meals_sort)
+if is_valid(Exists([m], eats(Vladimir, m) == macaroni)): print('(C)')
+# OPTION (D) omelet
+m = Const('m', meals_sort)
+if is_valid(Exists([m], eats(Vladimir, m) == omelet)): print('(D)')
+# OPTION (E) poached eggs
+m = Const('m', meals_sort)
+if is_valid(Exists([m], eats(Vladimir, m) == poached_eggs)): print('(E)')
+```
+------
+Example #2
+Context:
+In a repair facility there are exactly six technicians: Stacy, Urma, Wim, Xena, Yolanda, and Zane. Each technician repairs machines of at least one of the following three types—radios, televisions, and VCRs—and no other types. The following conditions apply: Xena and exactly three other technicians repair radios. Yolanda repairs both televisions and VCRs. Stacy does not repair any type of machine that Yolanda repairs. Zane repairs more types of machines than Yolanda repairs. Wim does not repair any type of machine that Stacy repairs. Urma repairs exactly two types of machines.
+Question:
+Which one of the following pairs of technicians could repair all and only the same types of machines as each other?
+Choices:
+(A) Stacy and Urma
+(B) Urma and Yolanda
+(C) Urma and Xena
+(D) Wim and Xena
+(E) Xena and Yolanda
+###
+Code:
+```python
+# Declarations
+# Context: In a repair facility there are exactly six technicians: Stacy, Urma, Wim, Xena, Yolanda, and Zane. Each technician repairs machines of at least one of the following three types—radios, televisions, and VCRs—and no other types.
+technicians_sort, (Stacy, Urma, Wim, Xena, Yolanda, Zane) = EnumSort('technicians', ['Stacy', 'Urma', 'Wim', 'Xena', 'Yolanda', 'Zane'])
+machines_sort, (radios, televisions, VCRs) = EnumSort('machines', ['radios', 'televisions', 'VCRs'])
+technicians = [Stacy, Urma, Wim, Xena, Yolanda, Zane]
+machines = [radios, televisions, VCRs]
+repairs = Function('repairs', technicians_sort, machines_sort, BoolSort())
+
+# Constraints
+pre_conditions = []
+# CONSTRAINT: Each technician repairs machines of at least one of the following three types—radios, televisions, and VCRs—and no other types.
+t = Const('t', technicians_sort)
+pre_conditions.append(ForAll([t], Sum([repairs(t, m) for m in machines]) >= 1))
+# CONSTRAINT: Xena and exactly three other technicians repair radios.
+pre_conditions.append(And(repairs(Xena, radios), Sum([And(t != Xena, repairs(t, radios)) for t in technicians]) == 3))
+# CONSTRAINT: Yolanda repairs both televisions and VCRs.
+pre_conditions.append(And(repairs(Yolanda, televisions), repairs(Yolanda, VCRs)))
+# CONSTRAINT: Stacy does not repair any type of machine that Yolanda repairs.
+m = Const('m', machines_sort)
+pre_conditions.append(ForAll([m], Implies(repairs(Yolanda, m), Not(repairs(Stacy, m)))))
+# CONSTRAINT: Zane repairs more types of machines than Yolanda repairs.
+pre_conditions.append(Sum([repairs(Zane, m) for m in machines]) > Sum([repairs(Yolanda, m) for m in machines]))
+# CONSTRAINT: Wim does not repair any type of machine that Stacy repairs.
+m = Const('m', machines_sort)
+pre_conditions.append(ForAll([m], Implies(repairs(Stacy, m), Not(repairs(Wim, m)))))
+# CONSTRAINT: Urma repairs exactly two types of machines.
+pre_conditions.append(Sum([repairs(Urma, m) for m in machines]) == 2)
+
+# Question: Which one of the following pairs of technicians could repair all and only the same types of machines as each other?
+def is_sat(option_constraints):
+    solver = Solver()
+    solver.add(pre_conditions)
+    solver.add(option_constraints)
+    return solver.check() == sat
+# OPTION (A) Stacy and Urma
+m = Const('m', machines_sort)
+if is_sat(ForAll([m], repairs(Stacy, m) == repairs(Urma, m))): print('(A)')
+# OPTION (B) Urma and Yolanda
+m = Const('m', machines_sort)
+if is_sat(ForAll([m], repairs(Urma, m) == repairs(Yolanda, m))): print('(B)')
+# OPTION (C) Urma and Xena
+m = Const('m', machines_sort)
+if is_sat(ForAll([m], repairs(Urma, m) == repairs(Xena, m))): print('(C)')
+# OPTION (D) Wim and Xena
+m = Const('m', machines_sort)
+if is_sat(ForAll([m], repairs(Wim, m) == repairs(Xena, m))): print('(D)')
+# OPTION (E) Xena and Yolanda
+m = Const('m', machines_sort)
+if is_sat(ForAll([m], repairs(Xena, m) == repairs(Yolanda, m))): print('(E)')
+```
+------
+Example #3
+Context:
+Workers at a water treatment plant open eight valves—G, H, I, K, L, N, O, and P—to flush out a system of pipes that needs emergency repairs. To maximize safety and efficiency, each valve is opened exactly once, and no two valves are opened at the same time. The valves are opened in accordance with the following conditions: Both K and P are opened before H. O is opened before L but after H. L is opened after G. N is opened before H. I is opened after K.
+Question: Each of the following could be the fifth valve opened EXCEPT:
+Choices:
+(A) H
+(B) I
+(C) K
+(D) N
+(E) O
+###
+Code: 
+```python
+# Declarations
+# Context: Workers at a water treatment plant open eight valves—G, H, I, K, L, N, O, and P—to flush out a system of pipes that needs emergency repairs.
+valves_sort, (G, H, I, K, L, N, O, P) = EnumSort('valves', ['G', 'H', 'I', 'K', 'L', 'N', 'O', 'P'])
+valves = [G, H, I, K, L, N, O, P]
+opened = Function('opened', valves_sort, IntSort())
+pre_conditions = []
+v = Const('v', valves_sort)
+pre_conditions.append(ForAll([v], And(1 <= opened(v), opened(v) <= 8)))
+
+# Constraints
+# CONSTRAINT: To maximize safety and efficiency, each valve is opened exactly once, and no two valves are opened at the same time.
+pre_conditions.append(Distinct([opened(v) for v in valves]))
+# CONSTRAINT: Both K and P are opened before H.
+pre_conditions.append(And(opened(K) < opened(H), opened(P) < opened(H)))
+# CONSTRAINT: O is opened before L but after H.
+pre_conditions.append(And(opened(O) > opened(H), opened(O) < opened(L)))
+# CONSTRAINT: L is opened after G.
+pre_conditions.append(opened(L) > opened(G))
+# CONSTRAINT: N is opened before H.
+pre_conditions.append(opened(N) < opened(H))
+# CONSTRAINT: I is opened after K.
+pre_conditions.append(opened(I) > opened(K))
+
+# Question: Each of the following could be the fifth valve opened EXCEPT:
+def is_exception(x):
+    return not x
+def is_sat(option_constraints):
+    solver = Solver()
+    solver.add(pre_conditions)
+    solver.add(option_constraints)
+    return solver.check() == sat
+# OPTION (A) H
+if is_exception(is_sat(opened(H) == 5)): print('(A)')
+# OPTION (B) I
+if is_exception(is_sat(opened(I) == 5)): print('(B)')
+# OPTION (C) K
+if is_exception(is_sat(opened(K) == 5)): print('(C)')
+# OPTION (D) N
+if is_exception(is_sat(opened(N) == 5)): print('(D)')
+# OPTION (E) O
+if is_exception(is_sat(opened(O) == 5)): print('(E)')
+```
+------
+Problem:
+[[CONTEXT]]
+Question:
+[[QUESTION]]
+Choices:
+[[OPTIONS]]
+###
+Code:

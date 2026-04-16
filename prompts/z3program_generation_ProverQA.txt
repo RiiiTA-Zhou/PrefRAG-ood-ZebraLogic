@@ -1,0 +1,245 @@
+Given a problem description and a question, the task is to formulate the problem as a Z3 logic program using python API, consisting three parts: Declarations, Premises, and Options.
+Declarations: Declare the variables and functions.
+Premises: Write the constraints in the context as logic formulas.
+Conclusion: Write the statement in the context as logic formula.
+Then, define a python function to inference if the conclusion is true, false or uncertain.
+Do not give further explanation, output the code directly.
+------
+Example #1
+Context:
+Cleo is curious. If Cleo has a strong work ethic, then she either makes key discoveries or holds a leadership position. If Cleo has a passion for science, then she either conducts groundbreaking research or holds a leadership position. Cleo makes key discoveries. Cleo has a passion for science. If Cleo faces a personal struggle, then she either dedicates herself to her craft or pursues a noble profession (but not both). Cleo pursues a noble profession. For all humans, if someone conducts groundbreaking research, then they improve patient lives and earn recognition. If Cleo is curious, then she has a strong work ethic and values critical thinking. If Cleo is compassionate, then she either pioneers new treatments or dedicates herself to her craft (but not both). Cleo faces a personal struggle.
+
+Question: Based on the above information, is the following statement true, false, or uncertain? Cleo earns recognition.
+
+Options:
+A) True
+B) False
+C) Uncertain
+
+Z3 Program:
+```python
+# Declaration
+persons_sort, (Cleo,) = EnumSort('persons', ['Cleo'])
+
+Curious = Function('Curious', persons_sort, BoolSort())
+StrongWorkEthic = Function('StrongWorkEthic', persons_sort, BoolSort())
+MakesKeyDiscoveries = Function('MakesKeyDiscoveries', persons_sort, BoolSort())
+HoldsLeadership = Function('HoldsLeadership', persons_sort, BoolSort())
+PassionForScience = Function('PassionForScience', persons_sort, BoolSort())
+ConductsGroundbreakingResearch = Function('ConductsGroundbreakingResearch', persons_sort, BoolSort())
+FacesPersonalStruggle = Function('FacesPersonalStruggle', persons_sort, BoolSort())
+DedicateToCraft = Function('DedicateToCraft', persons_sort, BoolSort())
+PursuesNobleProfession = Function('PursuesNobleProfession', persons_sort, BoolSort())
+ImprovesPatientLives = Function('ImprovesPatientLives', persons_sort, BoolSort())
+EarnsRecognition = Function('EarnsRecognition', persons_sort, BoolSort())
+ValuesCriticalThinking = Function('ValuesCriticalThinking', persons_sort, BoolSort())
+Compassionate = Function('Compassionate', persons_sort, BoolSort())
+PioneersNewTreatments = Function('PioneersNewTreatments', persons_sort, BoolSort())
+
+# Premises
+pre_conditions = []
+
+# Cleo is curious
+pre_conditions.append(Curious(Cleo))
+
+# If Cleo has a strong work ethic, then she either makes key discoveries or holds a leadership position.
+pre_conditions.append(Implies(StrongWorkEthic(Cleo), Or(MakesKeyDiscoveries(Cleo), HoldsLeadership(Cleo))))
+
+# If Cleo has a passion for science, then she either conducts groundbreaking research or holds a leadership position.
+pre_conditions.append(Implies(PassionForScience(Cleo), Or(ConductsGroundbreakingResearch(Cleo), HoldsLeadership(Cleo))))
+
+# Cleo makes key discoveries.
+pre_conditions.append(MakesKeyDiscoveries(Cleo))
+
+# Cleo has a passion for science.
+pre_conditions.append(PassionForScience(Cleo))
+
+# If Cleo faces a personal struggle, then she either dedicates herself to her craft or pursues a noble profession (but not both).
+pre_conditions.append(Implies(FacesPersonalStruggle(Cleo), Xor(DedicateToCraft(Cleo), PursuesNobleProfession(Cleo))))
+
+# Cleo pursues a noble profession.
+pre_conditions.append(PursuesNobleProfession(Cleo))
+
+# For all humans, if someone conducts groundbreaking research, then they improve patient lives and earn recognition.
+p = Const('p', persons_sort)
+pre_conditions.append(ForAll([p], Implies(ConductsGroundbreakingResearch(p), And(ImprovesPatientLives(p), EarnsRecognition(p)))))
+
+# If Cleo is curious, then she has a strong work ethic and values critical thinking.
+pre_conditions.append(Implies(Curious(Cleo), And(StrongWorkEthic(Cleo), ValuesCriticalThinking(Cleo))))
+
+# If Cleo is compassionate, then she either pioneers new treatments or dedicates herself to her craft (but not both).
+pre_conditions.append(Implies(Compassionate(Cleo), Xor(PioneersNewTreatments(Cleo), DedicateToCraft(Cleo))))
+
+# Cleo faces a personal struggle.
+pre_conditions.append(FacesPersonalStruggle(Cleo))
+
+# Question: Based on the above information, is the following statement true, false, or uncertain?
+# Cleo earns recognition.
+conclusion = EarnsRecognition(Cleo)
+
+def check_statement():
+    solver = Solver()
+    solver.add(pre_conditions)
+    # Check if statement is necessarily true
+    solver.push()
+    solver.add(Not(conclusion))
+    if solver.check() == unsat:
+        return 'A) True'
+    solver.pop()
+    # Check if statement is necessarily false  
+    solver.push()
+    solver.add(conclusion)
+    if solver.check() == unsat:
+        return 'B) False'
+    return 'C) Uncertain'
+
+print(check_statement())
+```
+------
+Example #2
+Context:
+If an orchid has roots and photosynthesizes, then it can bloom beautifully. Every orchid that grows in trees either photosynthesizes or uses aerial roots. Kinsley does not cling to a host. Kinsley does not require high humidity. Kinsley is ground-dwelling. All orchids that get nourishment and support their own weight develop roots. If Kinsley is either terrestrial or epiphytic (but not both), then she is thriving. If Kinsley has vibrant colors, then she either attracts pollinators or grows rapidly, but not both. Every orchid has roots or clings to a host. Kinsley needs indirect light. Every orchid that either blooms beautifully or releases fragrance is able to attract pollinators. If Kinsley either requires high humidity or needs indirect light (but not both), then she has vibrant colors. Colson grows rapidly. Kinsley does not release fragrance. If Kinsley is adaptable, then she is either ground-dwelling or epiphytic, but not both. If Kinsley derives nutrients, then she either is terrestrial or photosynthesizes. Ezra is adaptable. Any orchid that gets enough sunlight or retains moisture can bloom beautifully. Kinsley derives nutrients. Colson does not release fragrance. If Ezra either requires high humidity or needs indirect light (but not both), then she has vibrant colors. Kinsley grows rapidly. Kinsley is adaptable.
+
+Question: Based on the above information, is the following statement true, false, or uncertain? Kinsley is not thriving.
+
+Options:
+A) True
+B) False
+C) Uncertain
+
+Z3 Program:
+```python
+# Declaration
+orchids_sort, (Kinsley, Colson, Ezra) = EnumSort('orchids', ['Kinsley', 'Colson', 'Ezra'])
+
+HasRoots = Function('HasRoots', orchids_sort, BoolSort())
+Photosynthesizes = Function('Photosynthesizes', orchids_sort, BoolSort())
+CanBloomBeautifully = Function('CanBloomBeautifully', orchids_sort, BoolSort())
+GrowsInTrees = Function('GrowsInTrees', orchids_sort, BoolSort())
+UsesAerialRoots = Function('UsesAerialRoots', orchids_sort, BoolSort())
+ClingToHost = Function('ClingToHost', orchids_sort, BoolSort())
+RequiresHighHumidity = Function('RequiresHighHumidity', orchids_sort, BoolSort())
+GroundDwelling = Function('GroundDwelling', orchids_sort, BoolSort())
+GetsNourishment = Function('GetsNourishment', orchids_sort, BoolSort())
+SupportsOwnWeight = Function('SupportsOwnWeight', orchids_sort, BoolSort())
+Terrestrial = Function('Terrestrial', orchids_sort, BoolSort())
+Epiphytic = Function('Epiphytic', orchids_sort, BoolSort())
+Thriving = Function('Thriving', orchids_sort, BoolSort())
+HasVibrantColors = Function('HasVibrantColors', orchids_sort, BoolSort())
+AttractsPollinators = Function('AttractsPollinators', orchids_sort, BoolSort())
+GrowsRapidly = Function('GrowsRapidly', orchids_sort, BoolSort())
+NeedsIndirectLight = Function('NeedsIndirectLight', orchids_sort, BoolSort())
+ReleasesFragrance = Function('ReleasesFragrance', orchids_sort, BoolSort())
+Adaptable = Function('Adaptable', orchids_sort, BoolSort())
+DerivesNutrients = Function('DerivesNutrients', orchids_sort, BoolSort())
+GetsEnoughSunlight = Function('GetsEnoughSunlight', orchids_sort, BoolSort())
+RetainsMoisture = Function('RetainsMoisture', orchids_sort, BoolSort())
+
+# Premises
+pre_conditions = []
+
+# If an orchid has roots and photosynthesizes, then it can bloom beautifully.
+o = Const('o', orchids_sort)
+pre_conditions.append(ForAll([o], Implies(And(HasRoots(o), Photosynthesizes(o)), CanBloomBeautifully(o))))
+
+# Every orchid that grows in trees either photosynthesizes or uses aerial roots.
+o = Const('o', orchids_sort)
+pre_conditions.append(ForAll([o], Implies(GrowsInTrees(o), Or(Photosynthesizes(o), UsesAerialRoots(o)))))
+
+# Kinsley does not cling to a host.
+pre_conditions.append(Not(ClingToHost(Kinsley)))
+
+# Kinsley does not require high humidity.
+pre_conditions.append(Not(RequiresHighHumidity(Kinsley)))
+
+# Kinsley is ground-dwelling.
+pre_conditions.append(GroundDwelling(Kinsley))
+
+# All orchids that get nourishment and support their own weight develop roots.
+o = Const('o', orchids_sort)
+pre_conditions.append(ForAll([o], Implies(And(GetsNourishment(o), SupportsOwnWeight(o)), HasRoots(o))))
+
+# If Kinsley is either terrestrial or epiphytic (but not both), then she is thriving.
+pre_conditions.append(Implies(Xor(Terrestrial(Kinsley), Epiphytic(Kinsley)), Thriving(Kinsley)))
+
+# If Kinsley has vibrant colors, then she either attracts pollinators or grows rapidly, but not both.
+pre_conditions.append(Implies(HasVibrantColors(Kinsley), Xor(AttractsPollinators(Kinsley), GrowsRapidly(Kinsley))))
+
+# Every orchid has roots or clings to a host.
+o = Const('o', orchids_sort)
+pre_conditions.append(ForAll([o], Or(HasRoots(o), ClingToHost(o))))
+
+# Kinsley needs indirect light.
+pre_conditions.append(NeedsIndirectLight(Kinsley))
+
+# Every orchid that either blooms beautifully or releases fragrance is able to attract pollinators.
+o = Const('o', orchids_sort)
+pre_conditions.append(ForAll([o], Implies(Or(CanBloomBeautifully(o), ReleasesFragrance(o)), AttractsPollinators(o))))
+
+# If Kinsley either requires high humidity or needs indirect light (but not both), then she has vibrant colors.
+pre_conditions.append(Implies(Xor(RequiresHighHumidity(Kinsley), NeedsIndirectLight(Kinsley)), HasVibrantColors(Kinsley)))
+
+# Colson grows rapidly.
+pre_conditions.append(GrowsRapidly(Colson))
+
+# Kinsley does not release fragrance.
+pre_conditions.append(Not(ReleasesFragrance(Kinsley)))
+
+# If Kinsley is adaptable, then she is either ground-dwelling or epiphytic, but not both.
+pre_conditions.append(Implies(Adaptable(Kinsley), Xor(GroundDwelling(Kinsley), Epiphytic(Kinsley))))
+
+# If Kinsley derives nutrients, then she either is terrestrial or photosynthesizes.
+pre_conditions.append(Implies(DerivesNutrients(Kinsley), Or(Terrestrial(Kinsley), Photosynthesizes(Kinsley))))
+
+# Ezra is adaptable.
+pre_conditions.append(Adaptable(Ezra))
+
+# Any orchid that gets enough sunlight or retains moisture can bloom beautifully.
+o = Const('o', orchids_sort)
+pre_conditions.append(ForAll([o], Implies(Or(GetsEnoughSunlight(o), RetainsMoisture(o)), CanBloomBeautifully(o))))
+
+# Kinsley derives nutrients.
+pre_conditions.append(DerivesNutrients(Kinsley))
+
+# Colson does not release fragrance.
+pre_conditions.append(Not(ReleasesFragrance(Colson)))
+
+# If Ezra either requires high humidity or needs indirect light (but not both), then she has vibrant colors.
+pre_conditions.append(Implies(Xor(RequiresHighHumidity(Ezra), NeedsIndirectLight(Ezra)), HasVibrantColors(Ezra)))
+
+# Kinsley grows rapidly.
+pre_conditions.append(GrowsRapidly(Kinsley))
+
+# Kinsley is adaptable.
+pre_conditions.append(Adaptable(Kinsley))
+
+# Question: Based on the above information, is the following statement true, false, or uncertain?
+# Kinsley is not thriving.
+conclusion = Not(Thriving(Kinsley))
+
+def check_statement():
+    solver = Solver()
+    solver.add(pre_conditions)
+    # Check if statement is necessarily true
+    solver.push()
+    solver.add(Not(conclusion))
+    if solver.check() == unsat:
+        return 'A) True'
+    solver.pop()
+    # Check if statement is necessarily false  
+    solver.push()
+    solver.add(conclusion)
+    if solver.check() == unsat:
+        return 'B) False'
+    return 'C) Uncertain'
+
+print(check_statement())
+```
+------
+Context: [[CONTEXT]]
+
+Question: [[QUESTION]]
+
+Options: [[OPTIONS]]
+
+Z3 Program:

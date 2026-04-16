@@ -1,0 +1,111 @@
+Suppose you are expertized in FOL. Given a natural language statement and its corresponding FOL formulas, your task is to give a FOL formulas which is not equivalent to the original FOL, using the same predicates and entities, but with different FOL structure. You can use these logical symbols: negation ¬, conjunction ∧, disjunction ∨, exclusive disjunction ⊕, conditional →, biconditional ↔, universal quantification ∀, existential quantification ∃. Output the formulars with the format as the examples, then translate them into Z3 python expressions. When generating Z3 expressions, use the function names and entities names in the original expressions instead of the predicate names in fol. Do not use markdown format.
+------
+Example:
+## Materials
+1.Text:The Blake McFall Company Building is a commercial warehouse listed on the National Register of Historic Places.
+Predicates:
+Blake(x),Building(x)
+Fol:∀x (Blake(x) → Building(x))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Implies(Blake(b), Building(b))))
+```
+2.Text:The Blake McFall Company Building was added to the National Register of Historic Places in 1990.
+Predicates:
+Blake(x),Historic(x,y)
+Fol:∀x (Blake(x) → Historic(x, year1990))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Implies(Blake(b), Historic(b, year1990))))
+```
+3.Text:The Emmet Building is a five-story building in Portland, Oregon.
+Predicates:
+FiveStory(x),Building(x),Locate(x,y),Emmet(x)
+Constants:
+portland
+Fol:∀x (Emmet(x) → Building(x) ∧ FiveStory(x) ∧ Locate(x, portland))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Implies(Emmet(b), And(Building(b), FiveStory(b), Located(b, portland)))))
+```
+4.Text:The Emmet Building was built in 1915.
+Predicates:
+Emmet(x),Construct(x,y)
+False Fol:∀x (Emmet(x) → Construct(x, year1915))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Implies(Emmet(b), Constructed(b, year1915))))
+```
+5.Text:The Emmet Building is another name for the Blake McFall Company Building.
+Predicates:
+Blake(x),Emmet(x)
+False Fol:∀x (Emmet(x) ↔ Blake(x))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Emmet(b) == Blake(b)))
+```
+6.Text:John works at the Emmet Building.
+Predicates:
+Emmet(x),Work(x,y)
+Constants:
+john
+False Fol:∃x (Emmet(x) ∧ Work(john, x))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(Exists([b], And(Emmet(b), WorksAt(John, b))))
+```
+
+## Output
+1.Text:The Blake McFall Company Building is a commercial warehouse listed on the National Register of Historic Places.
+False Fol: ∃x (Blake(x) ∧ Building(x))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(Exists([b], And(Blake(b), Building(b))))
+```
+2.Text:The Blake McFall Company Building was added to the National Register of Historic Places in 1990.
+False Fol: ∀x (Historic(x, year1990) → Blake(x))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Implies(Historic(b, year1990), Blake(b))))
+```
+3.Text:The Emmet Building is a five-story building in Portland, Oregon.
+False Fol: ∃x (Emmet(x) ∧ Building(x) ∧ FiveStory(x) → Locate(x, portland))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(Exists([b], Implies(And(Building(b), FiveStory(b), Emmet(b)), Located(b, portland))))
+```
+4.Text:The Emmet Building was built in 1915.
+False Fol: ∀x (Emmet(x) ∨ ¬Construct(x, year1915))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Or(Emmet(b), Not(Constructed(b, year1915)))))
+```
+5.Text:The Emmet Building is another name for the Blake McFall Company Building.
+False Fol: ∀x (Emmet(x) → Blake(x))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Implies(Emmet(x), Blake(x))))
+```
+6.Text:John works at the Emmet Building.
+False Fol: ∀x (Emmet(x) → Work(john, x))
+Z3 expression:
+```
+b = Const('b', buildings_sort)
+pre_conditions.append(ForAll([b], Implies(Emmet(b), WorksAt(John, b))))
+```
+------
+## Materials
+[[FOLFORMULAS]]
+
+## Output

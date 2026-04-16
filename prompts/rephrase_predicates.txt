@@ -1,0 +1,62 @@
+Suppose you are an expert on FOL. Given a story and some predicates extracted from it, your task is to give predicates for the same semantic meaning but with different names. The original predicates are expressed in Z3 functions declaration. Output the rephrased predicates as Z3 functions declaration only, with the original predicate as the comment for it.
+------
+Example #1
+## Story
+Context: Phoneix's music is classified under the indie pop genre. Phoenix is a band from France. French bands write songs in French or in English. Aside from indie pop, pop rock and synth-pop are two other genres of music. Phoneix has no songs in French.
+
+## Declaration
+bands_sort, (Phoneix,) = EnumSort('bands', ['Phoneix'])
+bands = [Phoneix]
+genres_sort, (indie_pop, pop_rock, synth_pop) = EnumSort('genres', ['indie_pop', 'pop_rock', 'synth_pop'])
+genres = [indie_pop, pop_rock, synth_pop]
+makes = Function('makes', bands_sort, genres_sort)
+from_france = Function('from_france', bands_sort, BoolSort())
+in_french = Function('in_french', bands_sort, BoolSort())
+in_english = Function('in_english', bands_sort, BoolSort())
+
+## Original Predicates
+makes, from_france, in_french, in_english
+
+## Rephrased Predicates
+# makes
+classified_under = Function('classified_under', bands_sort, genres_sort)
+# from_france
+french_band = Function('french_band', bands_sort, BoolSort())
+# in_french
+songs_in_french = Function('songs_in_french', bands_sort, genres_sort, BoolSort())
+# in_english
+songs_in_english = Function('songs_in_english', bands_sort, genres_sort, BoolSort())
+------
+Example #2
+## Story
+Context: Tyga is a rapper. Rappers release rap albums. Tyga released the Well Done 3 album. Rappers are not opera singers.
+
+## Declaration
+humans_sort, (Tyga,) = EnumSort('humans', ['Tyga'])
+jobs_sort, (rapper, opera_singer) = EnumSort('jobs', ['rapper', 'opera_singer'])
+albums_sort, (Well_Done_3,) = EnumSort('albums', ['Well_Done_3'])
+is_job = Function('is_job', humans_sort, jobs_sort, BoolSort())
+releases = Function('releases', humans_sort, albums_sort, BoolSort())
+is_rap_album = Function('is_rap_album', albums_sort, BoolSort())
+
+## Original Predicates
+is_job, releases, is_rap_album
+
+## Rephrased Predicates
+# is_job
+has_profession = Function('has_profession', humans_sort, jobs_sort, BoolSort())
+# releases
+puts_out = Function('puts_out', humans_sort, albums_sort, BoolSort())
+# is_rap_album
+rap_album = Function('rap_album', albums_sort, BoolSort())
+------
+## Story
+[[NLCONTEXT]]
+
+## Declaration
+[[DECLARATION]]
+
+## Original Predicates
+[[PREDICATES]]
+
+## Rephrased Predicates

@@ -1,0 +1,307 @@
+Given a context and a statement to be judged, your task is to give a Z3 program in python API according to the corresponding FOL formulas.
+------
+Example #1
+Context: Phoneix's music is classified under the indie pop genre. Phoenix is a band from France. French bands write songs in French or in English. Aside from indie pop, pop rock and synth-pop are two other genres of music. Phoneix has no songs in French.
+
+Question: Based on the above information, is the following statement true, false, or uncertain? Phoenix makes pop rock music.
+
+FOL:
+We can get these predicates:
+IndiePop(x),Band(x),France(x),Make(x,y),FrenchSong(x),EnglishSong(x),PopRock(x),SynthPop(x)
+We can get these constants:
+phoenix
+Let's translate one by one.
+Premises:
+1.Text:Phoneix's music is classified under the indie pop genre.
+Predicates:
+IndiePop(x)
+Constants:
+phoenix
+Fol:IndiePop(phoenix)
+2.Text:Phoenix is a band from France.
+Predicates:
+Band(x),France(x)
+Constants:
+phoenix
+Fol:Band(phoenix) ∧ France(phoenix)
+3.Text:French bands write songs in French or in English.
+Predicates:
+France(x),EnglishSong(x),Make(x,y),FrenchSong(x),Band(x)
+Fol:∀x ∀y (Band(x) ∧ France(x) ∧ Make(x, y) → FrenchSong(y) ⊕ EnglishSong(y))
+4.Text:Aside from indie pop, pop rock and synth-pop are two other genres of music.
+Predicates:
+PopRock(x),SynthPop(x),IndiePop(x)
+Fol:∀x (IndiePop(x) → ¬PopRock(x) ∧ ¬SynthPop(x))
+5.Text:Phoneix has no songs in French.
+Predicates:
+FrenchSong(x),Make(x,y)
+Constants:
+phoenix
+Fol:∀x (Make(phoenix, x) → ¬FrenchSong(x))
+Conclusion:
+Text:Phoenix makes pop rock music.
+Predicates:
+PopRock(x)
+Constants:
+phoenix
+Fol:PopRock(phoenix)
+
+Z3 Program:
+```python
+# Declaration
+bands_sort, (Phoneix,) = EnumSort('bands', ['Phoneix'])
+bands = [Phoneix]
+genres_sort, (indie_pop, pop_rock, synth_pop) = EnumSort('genres', ['indie_pop', 'pop_rock', 'synth_pop'])
+genres = [indie_pop, pop_rock, synth_pop]
+
+makes = Function('makes', bands_sort, genres_sort)
+from_france = Function('from_france', bands_sort, BoolSort())
+in_french = Function('in_french', bands_sort, BoolSort())
+in_english = Function('in_english', bands_sort, BoolSort())
+
+# Premises
+pre_conditions = []
+# Phoneix's music is classified under the indie pop genre.
+pre_conditions.append(makes(Phoneix)==indie_pop)
+# Phoenix is a band from France.
+pre_conditions.append(from_france(Phoneix))
+# French bands write songs in French or in English.
+b = Const('b', bands_sort)
+pre_conditions.append(ForAll([b], Implies(from_france(b), Or(in_french(b), in_english(b)))))
+# Phoneix has no songs in French.
+pre_conditions.append(Not(in_french(Phoneix)))
+
+# Question: Based on the above information, is the following statement true, false, or uncertain? Phoenix makes pop rock music.
+conclusion = makes(Phoneix) == pop_rock
+
+def check_statement():
+    solver = Solver()
+    solver.add(pre_conditions)
+    # Check if statement is necessarily true
+    solver.push()
+    solver.add(Not(conclusion))
+    if solver.check() == unsat:
+        return 'A) True'
+    solver.pop()
+    # Check if statement is necessarily false  
+    solver.push()
+    solver.add(conclusion)
+    if solver.check() == unsat:
+        return 'B) False'
+    return 'C) Uncertain'
+
+print(check_statement())
+```
+------
+Example #2
+Context: Tyga is a rapper. Rappers release rap albums. Tyga released the Well Done 3 album. Rappers are not opera singers.
+
+Question: Based on the above information, is the following statement true, false, or uncertain? Well Done 3 is a rap album.
+
+FOL:
+We can get these predicates:
+IsRapper(x),ReleasedAlbum(x,y),IsRapAlbum(x),IsOperaSinger(x)
+We can get these constants:
+
+Let's translate one by one.
+Premises:
+1.Text:Tyga is a rapper.
+Predicates:
+IsRapper(x)
+Constants:
+tyga
+Fol:IsRapper(tyga)
+2.Text:Rappers release rap albums.
+Predicates:
+ReleasedAlbum(x,y)
+Constants:
+tyga,wellDone3
+Fol:ReleasedAlbum(tyga, wellDone3)
+3.Text:Tyga released the Well Done 3 album.
+Predicates:
+IsRapper(x),ReleasedAlbum(x,y),IsRapAlbum(x)
+Fol:∀x ∀y (IsRapper(x) ∧ ReleasedAlbum(x, y) → IsRapAlbum(y))
+4.Text:Rappers are not opera singers.
+Predicates:
+IsRapper(x),IsOperaSinger(x)
+Fol:∀x (IsRapper(x) → ¬IsOperaSinger(x))
+Conclusion:
+Text:Well Done 3 is a rap album.
+Predicates:
+IsRapAlbum(x)
+Constants:
+wellDone3
+Fol:IsRapAlbum(wellDone3)
+
+Z3 Program:
+```python
+# Declaration
+humans_sort, (Tyga,) = EnumSort('humans', ['Tyga'])
+jobs_sort, (rapper, opera_singer) = EnumSort('jobs', ['rapper', 'opera_singer'])
+albums_sort, (Well_Done_3,) = EnumSort('albums', ['Well_Done_3'])
+
+is_job = Function('is_job', humans_sort, jobs_sort, BoolSort())
+releases = Function('releases', humans_sort, albums_sort, BoolSort())
+is_rap_album = Function('is_rap_album', albums_sort, BoolSort())
+
+# Premises
+pre_conditions = []
+# Tyga is a rapper.
+pre_conditions.append(is_job(Tyga, rapper))
+# Rappers release rap albums.
+h = Const('h', humans_sort)
+a = Const('a', albums_sort)
+pre_conditions.append(ForAll([h, a], Implies(And(is_job(h, rapper), releases(h, a)), is_rap_album(a))))
+# Tyga released the Well Done 3 album.
+pre_conditions.append(releases(Tyga, Well_Done_3))
+# Rappers are not opera singers.
+h = Const('h', humans_sort)
+pre_conditions.append(ForAll([h], Implies(is_job(h, rapper), Not(is_job(h, opera_singer)))))
+
+# Question: Based on the above information, is the following statement true, false, or uncertain? Well Done 3 is a rap album.
+conclusion = is_rap_album(Well_Done_3)
+
+
+def check_statement():
+    solver = Solver()
+    solver.add(pre_conditions)
+    # Check if statement is necessarily true
+    solver.push()
+    solver.add(Not(conclusion))
+    if solver.check() == unsat:
+        return 'A) True'
+    solver.pop()
+    # Check if statement is necessarily false  
+    solver.push()
+    solver.add(conclusion)
+    if solver.check() == unsat:
+        return 'B) False'
+    return 'C) Uncertain'
+
+print(check_statement())
+```
+------
+Context: Either present their work at the conference or provide a tutorial session at the conference. All who present their work at the conference will attend in person. All those providing a tutorial session at the conference are invited to join the club. All who attend the conference in person are provided with souvenirs. All invited to join the club are provided with delicious meals. All provided with delicious meals are happy to communicate with each other during the dinner. All provided with delicious meals are invited to take a photo with the audience. James does not attend the conference in person and is not provided with souvenirs.
+
+Question: Based on the above information, is the following statement true, false, or uncertain? James is provided with souvenirs.
+
+FOL:
+We can get these predicates:
+Present(x),Tutorial(x),InPerson(x),Invited(x),Souvenirs(x),Meals(x),HappyCommunicate(x),InvitedTakePhoto(x)
+We can get these constants:
+james
+Let's translate one by one.
+Premises:
+1.Text:Either present their work at the conference or provide a tutorial session at the conference.
+Predicates:
+Tutorial(x),Present(x)
+Fol:∀x ( Present(x) ∨ Tutorial(x))
+2.Text:All who present their work at the conference will attend in person.
+Predicates:
+Present(x),InPerson(x)
+Fol:∀x (Present(x) → InPerson(x))
+3.Text:All those providing a tutorial session at the conference are invited to join the club.
+Predicates:
+Invited(x),Tutorial(x)
+Fol:∀x (Tutorial(x) → Invited(x))
+4.Text:All who attend the conference in person are provided with souvenirs.
+Predicates:
+Souvenirs(x),InPerson(x)
+Fol:∀x (InPerson(x) → Souvenirs(x))
+5.Text:All invited to join the club are provided with delicious meals.
+Predicates:
+Invited(x),Meals(x)
+Fol:∀x (Invited(x) → Meals(x))
+6.Text:All provided with delicious meals are happy to communicate with each other during the dinner.
+Predicates:
+Meals(x),HappyCommunicate(x)
+Fol:∀x (Meals(x) → HappyCommunicate(x))
+7.Text:All provided with delicious meals are invited to take a photo with the audience.
+Predicates:
+Meals(x),InvitedTakePhoto(x)
+Fol:∀x (Meals(x) → InvitedTakePhoto(x))
+8.Text:James does not attend the conference in person and is not provided with souvenirs.
+Predicates:
+Souvenirs(x),InPerson(x)
+Constants:
+james
+Fol:¬(InPerson(james) ∧ Souvenirs(james))
+Conclusion:
+Text:James is provided with souvenirs.
+Predicates:
+Souvenirs(x)
+Constants:
+james
+Fol:Souvenirs(james)
+
+Z3 Program:
+```python
+# Declaration
+persons_sort, (James,) = EnumSort('persons', ['James'])
+persons = [James]
+
+Present = Function('Present', persons_sort, BoolSort())
+Tutorial = Function('Tutorial', persons_sort, BoolSort())
+InPerson = Function('InPerson', persons_sort, BoolSort())
+Invited = Function('Invited', persons_sort, BoolSort())
+Souvenirs = Function('Souvenirs', persons_sort, BoolSort())
+Meals = Function('Meals', persons_sort, BoolSort())
+HappyCommunicate = Function('HappyCommunicate', persons_sort, BoolSort())
+InvitedTakePhoto = Function('InvitedTakePhoto', persons_sort, BoolSort())
+
+# Premises
+pre_conditions = []
+# Either present their work at the conference or provide a tutorial session at the conference.
+p = Const('p', persons_sort)
+pre_conditions.append(ForAll([p], Or(Present(p), Tutorial(p))))
+
+# All who present their work at the conference will attend in person.
+pre_conditions.append(ForAll([p], Implies(Present(p), InPerson(p))))
+
+# All those providing a tutorial session at the conference are invited to join the club.
+pre_conditions.append(ForAll([p], Implies(Tutorial(p), Invited(p))))
+
+# All who attend the conference in person are provided with souvenirs.
+pre_conditions.append(ForAll([p], Implies(InPerson(p), Souvenirs(p))))
+
+# All invited to join the club are provided with delicious meals.
+pre_conditions.append(ForAll([p], Implies(Invited(p), Meals(p))))
+
+# All provided with delicious meals are happy to communicate with each other during the dinner.
+pre_conditions.append(ForAll([p], Implies(Meals(p), HappyCommunicate(p))))
+
+# All provided with delicious meals are invited to take a photo with the audience.
+pre_conditions.append(ForAll([p], Implies(Meals(p), InvitedTakePhoto(p))))
+
+# James does not attend the conference in person and is not provided with souvenirs.
+pre_conditions.append(And(Not(InPerson(James)), Not(Souvenirs(James))))
+
+# Question: Based on the above information, is the following statement true, false, or uncertain? James is provided with souvenirs.
+conclusion = Souvenirs(James)
+
+def check_statement():
+    solver = Solver()
+    solver.add(pre_conditions)
+    # Check if statement is necessarily true
+    solver.push()
+    solver.add(Not(conclusion))
+    if solver.check() == unsat:
+        return 'A) True'
+    solver.pop()
+    # Check if statement is necessarily false  
+    solver.push()
+    solver.add(conclusion)
+    if solver.check() == unsat:
+        return 'B) False'
+    return 'C) Uncertain'
+
+print(check_statement())
+```
+------
+Context: [[CONTEXT]]
+
+Question: [[QUESTION]]
+
+FOL: [[FOL]]
+
+Z3 Program:

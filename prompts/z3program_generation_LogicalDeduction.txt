@@ -1,0 +1,143 @@
+Given a problem description and a question, the task is to formulate the problem as a Z3 logic program using python API, consisting three parts: Declarations, Constraints, and Options.
+Declarations: Declare the variables and functions.
+Pre-conditions: Write the constraints in the problem description as logic formulas.
+Question and Options: Write the options in the question as logic formulas.
+For each option, use a custom python function to check the option's values.
+Do not give further explanation, output the code directly.
+------
+Example #1
+Context:
+The following paragraphs each describe a set of five objects arranged in a fixed order. The statements are logically consistent within each paragraph.\n\nOn a branch, there are five birds: a quail, an owl, a raven, a falcon, and a robin. The owl is the leftmost. The robin is to the left of the raven. The quail is the rightmost. The raven is the third from the left.
+Question: Which of the following is true?
+Options:
+A) The quail is the rightmost.
+B) The owl is the rightmost.
+C) The raven is the rightmost.
+D) The falcon is the rightmost.
+E) The robin is the rightmost.
+###
+Code:
+```python
+# Declaration
+birds_sort, (quail, owl, raven, falcon, robin) = EnumSort('birds', ['quail', 'owl', 'raven', 'falcon', 'robin'])
+birds = [quail, owl, raven, falcon, robin]
+position_at = Function('position_at', birds_sort, IntSort())
+
+# Premises
+pre_conditions = []
+# There are five birds in total
+b = Const('b', birds_sort)
+pre_conditions.append(ForAll([b], And(position_at(b) >= 1, position_at(b) <= 5)))
+
+# Each bird has a unique order
+pre_conditions.append(Distinct([position_at(b) for b in birds]))
+
+# The owl is the leftmost
+pre_conditions.append(position_at(owl) == 1)
+
+# The robin is to the left of the raven
+pre_conditions.append(position_at(robin) < position_at(raven))
+
+# The quail is the rightmost
+pre_conditions.append(position_at(quail) == 5)
+
+# The raven is the third from the left.
+pre_conditions.append(position_at(raven) == 3)
+
+# Question: Which of the following is true?
+def is_sat(option_constraints):
+    solver = Solver()
+    solver.add(pre_conditions)
+    solver.add(option_constraints)
+    return solver.check() == sat
+
+# A) The quail is the rightmost.
+if is_sat(position_at(quail) == 5): print('A)')
+# B) The owl is the rightmost.
+if is_sat(position_at(owl) == 5): print('B)')
+#C) The raven is the rightmost.
+if is_sat(position_at(raven) == 5): print('C)')
+# D) The falcon is the rightmost.
+if is_sat(position_at(falcon) == 5): print('D)')
+# E) The robin is the rightmost.
+if is_sat(position_at(robin) == 5): print('E)')
+```
+------
+Example #2
+Context:
+The following paragraphs each describe a set of seven objects arranged in a fixed order. The statements are logically consistent within each paragraph.\n\nIn an antique car show, there are seven vehicles: a bus, a motorcyle, a hatchback, a station wagon, a minivan, a truck, and a limousine. The station wagon is the fourth-newest. The motorcyle is newer than the truck. The station wagon is older than the hatchback. The minivan is newer than the hatchback. The bus is newer than the minivan. The truck is newer than the limousine.
+Question: Which of the following is true?
+Options:
+A) The bus is the third-oldest.
+B) The motorcyle is the third-oldest.
+C) The hatchback is the third-oldest.
+D) The station wagon is the third-oldest.
+E) The minivan is the third-oldest.
+F) The truck is the third-oldest.
+G) The limousine is the third-oldest.
+###
+Code:
+```python
+# Declaration
+vehicles_sort, (bus, motorcycle, hatchback, station_wagon, minivan, truck, limousine) = EnumSort('vehicles', ['bus', 'motorcycle', 'hatchback', 'station_wagon', 'minivan', 'truck', 'limousine'])
+vehicles = [bus, motorcycle, hatchback, station_wagon, minivan, truck, limousine]
+newest_to_oldest = Function('newest_to_oldest', vehicles_sort, IntSort())
+
+# Premises
+pre_conditions = []
+# There are seven vehicles in total
+v = Const('v', vehicles_sort)
+pre_conditions.append(ForAll([v], And(newest_to_oldest(v) >= 1, newest_to_oldest(v) <= 7)))
+
+# No two vehicles are at the same age
+pre_conditions.append(Distinct([newest_to_oldest(v) for v in vehicles]))
+
+# The station wagon is the fourth-newest
+pre_conditions.append(newest_to_oldest(station_wagon) == 4)
+
+# The motorcyle is newer than the truck
+pre_conditions.append(newest_to_oldest(motorcycle) < newest_to_oldest(truck))
+
+# The station wagon is older than the hatchback
+pre_conditions.append(newest_to_oldest(station_wagon) > newest_to_oldest(hatchback))
+
+# The minivan is newer than the hatchback
+pre_conditions.append(newest_to_oldest(minivan) < newest_to_oldest(hatchback))
+
+# The bus is newer than the minivan
+pre_conditions.append(newest_to_oldest(bus) < newest_to_oldest(minivan))
+
+# The truck is newer than the limousine
+pre_conditions.append(newest_to_oldest(truck) < newest_to_oldest(limousine))
+
+# Question: Which of the following is true?
+def is_sat(option_constraints):
+    solver = Solver()
+    solver.add(pre_conditions)
+    solver.add(option_constraints)
+    return solver.check() == sat
+
+# A) The bus is the third-oldest.
+if is_sat(newest_to_oldest(bus) == 5): print('A)')
+# B) The motorcyle is the third-oldest.
+if is_sat(newest_to_oldest(motorcycle) == 5): print('B)')
+# C) The hatchback is the third-oldest.
+if is_sat(newest_to_oldest(hatchback) == 5): print('C)')
+# D) The station wagon is the third-oldest.
+if is_sat(newest_to_oldest(station_wagon) == 5): print('D)')
+# E) The minivan is the third-oldest.
+if is_sat(newest_to_oldest(minivan) == 5): print('E)')
+# F) The truck is the third-oldest.
+if is_sat(newest_to_oldest(truck) == 5): print('F)')
+# G) The limousine is the third-oldest.
+if is_sat(newest_to_oldest(limousine) == 5): print('G)')
+```
+------
+Problem:
+[[CONTEXT]]
+Question:
+[[QUESTION]]
+Options:
+[[OPTIONS]]
+###
+Code:

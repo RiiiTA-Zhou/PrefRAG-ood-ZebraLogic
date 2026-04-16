@@ -1,0 +1,10 @@
+{
+    "first_chosen": "For the given story, we have two Z3 logic programs using python API.\n[[CONTEXT]]\n# Program 1:\n[[CHOSEN_PROGRAM]]\nExecution Result:\n[[CHOSEN_EXEC]]\n# Program 2: [[REJECTED_PROGRAM]]\nExecution Result:\n[[REJECTED_EXEC]]\nThe first program is preferred than the second one, because:\n [[ERRORTYPE]]",
+    "second_chosen": "For the given story, we have two Z3 logic programs using python API.\n[[CONTEXT]]\n# Program 1:\n[[REJECTED_PROGRAM]]\nExecution Result:\n[[REJECTED_EXEC]]\n# Program 2: [[CHOSEN_PROGRAM]]\nExecution Result:\n[[CHOSEN_EXEC]]\nProgram 2 is preferred than Program 1, because:\n [[ERRORTYPE]]",
+    "error_description": {
+        "mi": "the program [[NUMBER]] has missing constraints from the original text, while the other one has them.",
+        "e2i": "the program [[NUMBER]] contains semantic errors in declaration, while the other one is correct.",
+        "i2e": "the program [[NUMBER]] contains semantic errors in declaration, while the other one is correct.",
+        "ic": "the program [[NUMBER]] contains constraints that have inconsistent semantics with the context, while the other one is semantically correct."
+    }
+}
