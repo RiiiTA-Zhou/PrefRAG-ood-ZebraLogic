@@ -1,0 +1,63 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "grid_mode",
+  "dataset_name": "zebra_logic",
+  "dataset_size": 1545275,
+  "description": "",
+  "download_size": 345826,
+  "features": {
+    "id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "size": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "puzzle": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "solution": {
+      "header": {
+        "feature": {
+          "dtype": "string",
+          "_type": "Value"
+        },
+        "_type": "List"
+      },
+      "rows": {
+        "feature": {
+          "feature": {
+            "dtype": "string",
+            "_type": "Value"
+          },
+          "_type": "List"
+        },
+        "_type": "List"
+      }
+    },
+    "created_at": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 1891101,
+  "splits": {
+    "test": {
+      "name": "test",
+      "num_bytes": 1545275,
+      "num_examples": 1000,
+      "dataset_name": "zebra_logic"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

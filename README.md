@@ -58,6 +58,6 @@ Result: `./constructed_data/data-augmentation-result/`
 
 There are three implementations for ARLSAT, FOLIO and ood datasets respectively. All in `./models`, prefix is `test`.
 
-❗ Before running, set the LLM config in `./models/LLM_config.py`. There is a template for reference `./models/LLM_config_template.py`.
+❗ Before running, set the LLM config in `./models/utils/LLM_config.py`. There is a template for reference `./models/utils/LLM_config_template.py`.
 
 Evaluation: `./models/eval.py`

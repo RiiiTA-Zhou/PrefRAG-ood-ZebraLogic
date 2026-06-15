@@ -1,0 +1,105 @@
+Given a puzzle description of a logic grid problem, output the solution as a JSON list of dictionaries. Each dictionary represents one house with keys matching the problem's headers. Do not include any explanation or code — output only the JSON.
+
+---
+Example #1
+## Context:
+There are 2 houses, numbered 1 to 2 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:
+ - Each person has a unique name: `Eric`, `Arnold`
+ - Each person has a unique type of pet: `cat`, `dog`
+ - The people are of nationalities: `dane`, `brit`
+ - Each person has an occupation: `doctor`, `engineer`
+ - People have unique favorite sports: `soccer`, `basketball`
+ - Everyone has a unique favorite cigar: `prince`, `pall mall`
+
+## Clues:
+1. The person who has a cat and the Prince smoker are next to each other.
+2. Eric is directly left of the person who owns a dog.
+3. The Dane is not in the second house.
+4. Arnold is the person who is a doctor.
+5. The person who loves basketball is not in the second house.
+
+## Headers:
+["House", "Name", "Pet", "Nationality", "Occupation", "FavoriteSport", "Cigar"]
+
+## Output:
+```json
+[
+  {"House": "1", "Name": "Eric", "Pet": "cat", "Nationality": "dane", "Occupation": "engineer", "FavoriteSport": "basketball", "Cigar": "pall mall"},
+  {"House": "2", "Name": "Arnold", "Pet": "dog", "Nationality": "brit", "Occupation": "doctor", "FavoriteSport": "soccer", "Cigar": "prince"}
+]
+```
+
+---
+Example #2
+## Context:
+There are 5 houses, numbered 1 to 5 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:
+ - Each person has a unique name: `Alice`, `Bob`, `Arnold`, `Peter`, `Eric`
+ - People have unique favorite sports: `tennis`, `baseball`, `soccer`, `basketball`, `swimming`
+
+## Clues:
+1. The person who loves tennis is not in the fifth house.
+2. The person who loves swimming and Alice are next to each other.
+3. The person who loves swimming is directly left of the person who loves tennis.
+4. Eric is the person who loves soccer.
+5. Eric is in the first house.
+6. Arnold is in the second house.
+7. Peter is the person who loves baseball.
+8. Alice is not in the third house.
+
+## Headers:
+["House", "Name", "FavoriteSport"]
+
+## Output:
+```json
+[
+  {"House": "1", "Name": "Eric", "FavoriteSport": "soccer"},
+  {"House": "2", "Name": "Arnold", "FavoriteSport": "basketball"},
+  {"House": "3", "Name": "Bob", "FavoriteSport": "swimming"},
+  {"House": "4", "Name": "Alice", "FavoriteSport": "tennis"},
+  {"House": "5", "Name": "Peter", "FavoriteSport": "baseball"}
+]
+```
+
+---
+Example #3
+## Context:
+There are 4 houses, numbered 1 to 4 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:
+ - Each person has a unique name: `Eric`, `Peter`, `Alice`, `Arnold`
+ - People own unique car models: `tesla model 3`, `honda civic`, `toyota camry`, `ford f150`
+ - Each person has a unique birthday month: `jan`, `april`, `sept`, `feb`
+ - Each person has a unique hobby: `painting`, `cooking`, `gardening`, `photography`
+
+## Clues:
+1. The person whose birthday is in January is not in the second house.
+2. The photography enthusiast is somewhere to the left of Eric.
+3. The photography enthusiast is somewhere to the left of Peter.
+4. The person who owns a Honda Civic is directly left of the person who owns a Tesla Model 3.
+5. There is one house between the person who owns a Tesla Model 3 and the person who enjoys gardening.
+6. The person who owns a Tesla Model 3 is Arnold.
+7. The person whose birthday is in February is the person who loves cooking.
+8. The person who owns a Toyota Camry is Peter.
+9. The person whose birthday is in April is Arnold.
+10. Alice is the photography enthusiast.
+11. Peter is the person whose birthday is in January.
+
+## Headers:
+["House", "Name", "CarModel", "Birthday", "Hobby"]
+
+## Output:
+```json
+[
+  {"House": "1", "Name": "Alice", "CarModel": "honda civic", "Birthday": "sept", "Hobby": "photography"},
+  {"House": "2", "Name": "Arnold", "CarModel": "tesla model 3", "Birthday": "april", "Hobby": "painting"},
+  {"House": "3", "Name": "Eric", "CarModel": "ford f150", "Birthday": "feb", "Hobby": "cooking"},
+  {"House": "4", "Name": "Peter", "CarModel": "toyota camry", "Birthday": "jan", "Hobby": "gardening"}
+]
+```
+
+---
+Problem:
+[[PROBLEM]]
+
+Headers:
+[[HEADERS]]
+
+Output:

@@ -1,0 +1,503 @@
+Given a problem description and a question, the task is to correct the Z3 logic program according to the error message, consisting three parts: Declarations, Constraints, and Options.
+Declarations: Declare the variables and functions.
+Pre-conditions: Write the constraints in the problem description as logic formulas.
+Question and Options: Output a SAT assignment as a list of dictionaries with the headers.
+Do not give further explanation, output the code directly.
+---
+Example #1
+## Context:
+There are 2 houses, numbered 1 to 2 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:
+ - Each person has a unique name: `Eric`, `Arnold`
+ - Each person has a unique type of pet: `cat`, `dog`
+ - The people are of nationalities: `dane`, `brit`
+ - Each person has an occupation: `doctor`, `engineer`
+ - People have unique favorite sports: `soccer`, `basketball`
+ - Everyone has a unique favorite cigar: `prince`, `pall mall`
+ 
+## Clues:
+1. The person who has a cat and the Prince smoker are next to each other.
+2. Eric is directly left of the person who owns a dog.
+3. The Dane is not in the second house.
+4. Arnold is the person who is a doctor.
+5. The person who loves basketball is not in the second house.
+
+## Headers:
+["House", "Name", "Pet", "Nationality", "Occupation", "FavoriteSport", "Cigar"]
+
+## Error program:
+```python
+from z3 import *
+
+# Declarations
+house_sort = IntSort()
+houses = [0, 1]
+person_sort, (Eric, Arnold) = EnumSort('person', ['Eric', 'Arnold'])
+persons = [Eric, Arnold]
+pet_sort, (cat, dog) = EnumSort('pet', ['cat', 'dog'])
+pets = [cat, dog]
+nationality_sort, (dane, brit) = EnumSort('nationality', ['dane', 'brit'])
+nationalities = [dane, brit]
+occupation_sort, (doctor, engineer) = EnumSort('occupation', ['doctor', 'engineer'])
+occupations = [doctor, engineer]
+sport_sort, (soccer, basketball) = EnumSort('sport', ['soccer', 'basketball'])
+sports = [soccer, basketball]
+cigar_sort, (prince, pall_mall) = EnumSort('cigar', ['prince', 'pall_mall'])
+cigars = [prince, pall_mall]
+person_of_house = Function('person_of_house', house_sort, person_sort)
+pet_of_house = Function('pet_of_house', house_sort, pet_sort)
+nationality_of_house = Function('nationality_of_house', house_sort, nationality_sort)
+occupation_of_house = Function('occupation_of_house', house_sort, occupation_sort)
+sport_of_house = Function('sport_of_house', house_sort, sport_sort)
+cigar_of_house = Function('cigar_of_house', house_sort, cigar_sort)
+
+# Constraints
+pre_conditions = []
+# Domain constraints
+pre_conditions.append(Distinct([person_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([pet_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([nationality_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([occupation_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([sport_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([cigar_of_house(h) for h in houses]))
+# clues
+# The person who has a cat and the Prince smoker are next to each other.
+h1 = Const('h1', house_sort)
+h2 = Const('h2', house_sort)
+pre_conditions.append(Implies(And(pet_of_house(h1) == cat, cigar_of_house(h2) == prince), h1 != h2))
+# Eric is directly left of the person who owns a dog.
+pre_conditions.append(person_of_house(0) == Eric)
+pre_conditions.append(pet_of_house(1) == dog)
+# The Dane is not in the second house.
+pre_conditions.append(Implies(nationality_of_house(h) == dane, h != 1))
+# Arnold is the person who is a doctor.
+h = Const('h', house_sort)
+pre_conditions.append(ForAll([h], Implies(person_of_house(h) == Arnold, occupation_of_house(h) == doctor)))
+# The person who loves basketball is not in the second house.
+h = Const('h', house_sort)
+pre_conditions.append(ForAll([h], Implies(sport_of_house(h) == basketball, h != 1)))
+
+# Solve
+s = Solver()
+s.add(pre_conditions)
+if s.check() == sat:
+    m = s.model()
+    models = []
+    for num, h in enumerate(houses):
+        model = {
+            'House': str(num + 1),
+            'Name': m.evaluate(person_of_house(h)),
+            'Pet': m.evaluate(pet_of_house(h)),
+            'Nationality': m.evaluate(nationality_of_house(h)),
+            'Occupation': m.evaluate(occupation_of_house(h)),
+            'FavoriteSport': m.evaluate(sport_of_house(h)),
+            'Cigar': m.evaluate(cigar_of_house(h))
+        }
+        models.append(model)
+
+    print(models)
+else:
+    print("UNSAT")
+```
+
+## Error message:
+  File "", line 62, in <module>
+    pre_conditions.append(Implies(nationality_of_house(h) == dane, h != 1))
+                                                       ^
+NameError: name 'h' is not defined
+
+## Code:
+```python
+# Declarations
+house_sort, (house1, house2) = EnumSort('house', ['house1', 'house2'])
+houses = [house1, house2]
+person_sort, (Eric, Arnold) = EnumSort('person', ['Eric', 'Arnold'])
+persons = [Eric, Arnold]
+pet_sort, (cat, dog) = EnumSort('pet', ['cat', 'dog'])
+pets = [cat, dog]
+nationality_sort, (dane, brit) = EnumSort('nationality', ['dane', 'brit'])
+nationalities = [dane, brit]
+occupation_sort, (doctor, engineer) = EnumSort('occupation', ['doctor', 'engineer'])
+occupations = [doctor, engineer]
+sport_sort, (soccer, basketball) = EnumSort('sport', ['soccer', 'basketball'])
+sports = [soccer, basketball]
+cigar_sort, (prince, pall_mall) = EnumSort('cigar', ['prince', 'pall_mall'])
+cigars = [prince, pall_mall]
+person_of_house = Function('person_of_house', house_sort, person_sort)
+pet_of_house = Function('pet_of_house', house_sort, pet_sort)
+nationality_of_house = Function('nationality_of_house', house_sort, nationality_sort)
+occupation_of_house = Function('occupation_of_house', house_sort, occupation_sort)
+sport_of_house = Function('sport_of_house', house_sort, sport_sort)
+cigar_of_house = Function('cigar_of_house', house_sort, cigar_sort)
+
+# Constraints
+pre_conditions = []
+# Domain constraints
+pre_conditions.append(Distinct([person_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([pet_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([nationality_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([occupation_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([sport_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([cigar_of_house(h) for h in houses]))
+# clues
+# The person who has a cat and the Prince smoker are next to each other.
+h1 = Const('h1', house_sort)
+h2 = Const('h2', house_sort)
+pre_conditions.append(ForAll([h1, h2], Implies(And(pet_of_house(h1) == cat, cigar_of_house(h2) == prince), h1 != h2)))
+# Eric is directly left of the person who owns a dog.
+pre_conditions.append(person_of_house(house1) == Eric)
+pre_conditions.append(pet_of_house(house2) == dog)
+# The Dane is not in the second house.
+h = Const('h', house_sort)
+pre_conditions.append(ForAll([h], Implies(nationality_of_house(h) == dane, h != house2)))
+# Arnold is the person who is a doctor.
+h = Const('h', house_sort)
+pre_conditions.append(ForAll([h], Implies(person_of_house(h) == Arnold, occupation_of_house(h) == doctor)))
+# The person who loves basketball is not in the second house.
+h = Const('h', house_sort)
+pre_conditions.append(ForAll([h], Implies(sport_of_house(h) == basketball, h != house2)))
+
+# Solve
+s = Solver()
+s.add(pre_conditions)
+if s.check() == sat:
+    m = s.model()
+    models = []
+    for num, h in enumerate(houses):
+        model = {
+            'House': str(num + 1),
+            'Name': m.evaluate(person_of_house(h)),
+            'Pet': m.evaluate(pet_of_house(h)),
+            'Nationality': m.evaluate(nationality_of_house(h)),
+            'Occupation': m.evaluate(occupation_of_house(h)),
+            'FavoriteSport': m.evaluate(sport_of_house(h)),
+            'Cigar': m.evaluate(cigar_of_house(h))
+        }
+        models.append(model)
+
+    print(models)
+else:
+    print("UNSAT")
+```
+------
+Example #2
+## Context:
+There are 5 houses, numbered 1 to 5 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:
+ - Each person has a unique name: `Alice`, `Bob`, `Arnold`, `Peter`, `Eric`
+ - People have unique favorite sports: `tennis`, `baseball`, `soccer`, `basketball`, `swimming`
+
+## Clues:
+1. The person who loves tennis is not in the fifth house.
+2. The person who loves swimming and Alice are next to each other.
+3. The person who loves swimming is directly left of the person who loves tennis.
+4. Eric is the person who loves soccer.
+5. Eric is in the first house.
+6. Arnold is in the second house.
+7. Peter is the person who loves baseball.
+8. Alice is not in the third house.
+
+## Headers:
+["House", "Name", "FavoriteSport"]
+
+## Error program:
+```python
+from z3 import *
+
+# Declarations
+house_sort, (house1, house2, house3, house4, house5) = EnumSort('house', ['house1', 'house2', 'house3', 'house4', 'house5'])
+person_sort, (Alice, Bob, Arnold, Peter, Eric) = EnumSort('person', ['Alice', 'Bob', 'Arnold', 'Peter', 'Eric'])
+sport_sort, (tennis, baseball, soccer, basketball, swimming) = EnumSort('sport', ['tennis', 'baseball', 'soccer', 'basketball', 'swimming'])
+person_of_house = Function('person_of_house', house_sort, person_sort)
+sport_of_house = Function('sport_of_house', house_sort, sport_sort)
+
+house_position = Function('house_position', house_sort, IntSort())
+
+
+# Constraints
+pre_conditions = []
+# clues
+# The person who loves tennis is not in the fifth house.
+pre_conditions.append(sport_of_house(house5) != tennis)
+# The person who loves swimming and Alice are next to each other.
+h1 = Const('h1', house_sort)
+h2 = Const('h2', house_sort)
+pre_conditions.append(ForAll([h1, h2], Implies(And(sport_of_house(h1) == swimming, person_of_house(h2) == Alice), Abs(house_position(h1) - house_position(h2)) == 1)))
+# The person who loves swimming is directly left of the person who loves tennis.
+pre_conditions.append(ForAll([h1, h2], Implies(And(sport_of_house(h1) == swimming, sport_of_house(h2) == tennis), house_position(h1) == house_position(h2) - 1)))
+# Eric is the person who loves soccer.
+pre_conditions.append(ForAll([h1], Implies(person_of_house(h1) == Eric, sport_of_house(h1) == soccer)))
+# Eric is in the first house.
+pre_conditions.append(person_of_house(house1) == Eric)
+# Arnold is in the second house.
+pre_conditions.append(person_of_house(house2) == Arnold)
+# Peter is the person who loves baseball.
+pre_conditions.append(Implies(person_of_house(house1) == Peter, sport_of_house(house1) == baseball))
+# Alice is not in the third house.
+pre_conditions.append(person_of_house(house3) != Alice)
+
+# Solve
+s = Solver()
+s.add(pre_conditions)
+if s.check() == sat:
+    m = s.model()
+    models = []
+    for num, h in enumerate(houses):
+        model = {
+            'House': str(num + 1),
+            'Name': m.evaluate(person_of_house(h)),
+            'FavoriteSport': m.evaluate(sport_of_house(h))
+        }
+        models.append(model)
+    print(models)
+else:
+    print("UNSAT")
+```
+
+## Error message:
+  File "", line 58, in <module>
+    for num, h in enumerate(houses):
+                            ^^^^^^
+NameError: name 'houses' is not defined
+
+## Code:
+```python
+# Declarations
+house_sort, (house1, house2, house3, house4, house5) = EnumSort('house', ['house1', 'house2', 'house3', 'house4', 'house5'])
+houses = [house1, house2, house3, house4, house5]
+person_sort, (Alice, Bob, Arnold, Peter, Eric) = EnumSort('person', ['Alice', 'Bob', 'Arnold', 'Peter', 'Eric'])
+persons = [Alice, Bob, Arnold, Peter, Eric]
+sport_sort, (tennis, baseball, soccer, basketball, swimming) = EnumSort('sport', ['tennis', 'baseball', 'soccer', 'basketball', 'swimming'])
+sports = [tennis, baseball, soccer, basketball, swimming]
+person_of_house = Function('person_of_house', house_sort, person_sort)
+sport_of_house = Function('sport_of_house', house_sort, sport_sort)
+
+house_position = Function('house_position', house_sort, IntSort())
+
+
+# Constraints
+pre_conditions = []
+# Domain constraints
+pre_conditions.append(Distinct([person_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([sport_of_house(h) for h in houses]))
+for i, house in enumerate(houses):
+    pre_conditions.append(house_position(house) == i)
+# clues
+# The person who loves tennis is not in the fifth house.
+pre_conditions.append(sport_of_house(house5) != tennis)
+# The person who loves swimming and Alice are next to each other.
+h1 = Const('h1', house_sort)
+h2 = Const('h2', house_sort)
+pre_conditions.append(ForAll([h1, h2], Implies(And(sport_of_house(h1) == swimming, person_of_house(h2) == Alice), Abs(house_position(h1) - house_position(h2)) == 1)))
+# The person who loves swimming is directly left of the person who loves tennis.
+pre_conditions.append(ForAll([h1, h2], Implies(And(sport_of_house(h1) == swimming, sport_of_house(h2) == tennis), house_position(h1) == house_position(h2) - 1)))
+# Eric is the person who loves soccer.
+pre_conditions.append(ForAll([h1], Implies(person_of_house(h1) == Eric, sport_of_house(h1) == soccer)))
+# Eric is in the first house.
+pre_conditions.append(person_of_house(house1) == Eric)
+# Arnold is in the second house.
+pre_conditions.append(person_of_house(house2) == Arnold)
+# Peter is the person who loves baseball.
+pre_conditions.append(ForAll([h1], Implies(person_of_house(h1) == Peter, sport_of_house(h1) == baseball)))
+# Alice is not in the third house.
+pre_conditions.append(person_of_house(house3) != Alice)
+
+# Solve
+s = Solver()
+s.add(pre_conditions)
+if s.check() == sat:
+    m = s.model()
+    models = []
+    for num, h in enumerate(houses):
+        model = {
+            'House': str(num + 1),
+            'Name': m.evaluate(person_of_house(h)),
+            'FavoriteSport': m.evaluate(sport_of_house(h))
+        }
+        models.append(model)
+    print(models)
+else:
+    print("UNSAT")
+```
+
+------
+Example #3
+##Context:
+There are 4 houses, numbered 1 to 4 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:
+ - Each person has a unique name: `Eric`, `Peter`, `Alice`, `Arnold`
+ - People own unique car models: `tesla model 3`, `honda civic`, `toyota camry`, `ford f150`
+ - Each person has a unique birthday month: `jan`, `april`, `sept`, `feb`
+ - Each person has a unique hobby: `painting`, `cooking`, `gardening`, `photography`
+
+## Clues:
+1. The person whose birthday is in January is not in the second house.
+2. The photography enthusiast is somewhere to the left of Eric.
+3. The photography enthusiast is somewhere to the left of Peter.
+4. The person who owns a Honda Civic is directly left of the person who owns a Tesla Model 3.
+5. There is one house between the person who owns a Tesla Model 3 and the person who enjoys gardening.
+6. The person who owns a Tesla Model 3 is Arnold.
+7. The person whose birthday is in February is the person who loves cooking.
+8. The person who owns a Toyota Camry is Peter.
+9. The person whose birthday is in April is Arnold.
+10. Alice is the photography enthusiast.
+11. Peter is the person whose birthday is in January.
+
+## Headers:
+["House", "Name", "CarModel", "Birthday", "Hobby"]
+
+## Error program:
+```python
+from z3 import *
+
+# Declarations
+house_sort, (house1, house2, house3, house4) = EnumSort('house', ['house1', 'house2', 'house3', 'house4'])
+houses = [house1, house2, house3, house4]
+person_sort, (Eric, Peter, Alice, Arnold) = EnumSort('person', ['Eric', 'Peter', 'Alice', 'Arnold'])
+persons = [Eric, Peter, Alice, Arnold]
+car_model_sort, (tesla_model_3, honda_civic, toyota_camry, ford_f150) = EnumSort('car_model', ['tesla_model_3', 'honda_civic', 'toyota_camry', 'ford_f150'])
+car_models = [tesla_model_3, honda_civic, toyota_camry, ford_f150]
+birthday_sort, (jan, april, sept, feb) = EnumSort('birthday', ['jan', 'april', 'sept', 'feb'])
+birthdays = [jan, april, sept, feb]
+hobby_sort, (painting, cooking, gardening, photography) = EnumSort('hobby', ['painting', 'cooking', 'gardening', 'photography'])
+hobbies = [painting, cooking, gardening, photography]
+person_of_house = Function('person_of_house', house_sort, person_sort)
+car_model_of_house = Function('car_model_of_house', house_sort, car_model_sort)
+birthday_of_house = Function('birthday_of_house', house_sort, birthday_sort)
+hobby_of_house = Function('hobby_of_house', house_sort, hobby_sort)
+
+# Constraints
+pre_conditions = []
+# Domain constraints
+pre_conditions.append(Distinct([person_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([car_model_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([birthday_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([hobby_of_house(h) for h in houses]))
+# clues
+# The person whose birthday is in January is not in the second house.
+pre_conditions.append(birthday_of_house(house2) != jan)
+# The photography enthusiast is somewhere to the left of Eric.
+h1 = Const('h1', house_sort)
+h2 = Const('h2', house_sort)
+pre_conditions.append(ForAll([h1, h2], Implies(And(hobby_of_house(h1) == photography, person_of_house(h2) == Eric), houses.index(h1) < houses.index(h2))))
+# The photography enthusiast is somewhere to the left of Peter.
+pre_conditions.append(ForAll([h1, h2], Implies(And(hobby_of_house(h1) == photography, person_of_house(h2) == Peter), houses.index(h1) < houses.index(h2))))
+# The person who owns a Honda Civic is directly left of the person who owns a Tesla Model 3.
+pre_conditions.append(ForAll([h1, h2], Implies(And(car_model_of_house(h1) == honda_civic, car_model_of_house(h2) == tesla_model_3), houses.index(h1) == houses.index(h2) - 1)))
+# There is one house between the person who owns a Tesla Model 3 and the person who enjoys gardening.
+pre_conditions.append(ForAll([h1, h2], Implies(And(car_model_of_house(h1) == tesla_model_3, hobby_of_house(h2) == gardening), Abs(houses.index(h1) - houses.index(h2)) == 2)))
+# The person who owns a Tesla Model 3 is Arnold.
+pre_conditions.append(ForAll([h1], Implies(car_model_of_house(h1) == tesla_model_3, person_of_house(h1) == Arnold)))
+# The person whose birthday is in February is the person who loves cooking.
+pre_conditions.append(ForAll([h1], Implies(birthday_of_house(h1) == feb, hobby_of_house(h1) == cooking)))
+# The person who owns a Toyota Camry is Peter.
+pre_conditions.append(ForAll([h1], Implies(car_model_of_house(h1) == toyota_camry, person_of_house(h1) == Peter)))
+# The person whose birthday is in April is Arnold.
+pre_conditions.append(ForAll([h1], Implies(birthday_of_house(h1) == april, person_of_house(h1) == Arnold)))
+# Alice is the photography enthusiast.
+pre_conditions.append(ForAll([h1], Implies(person_of_house(h1) == Alice, hobby_of_house(h1) == photography)))
+# Peter is the person whose birthday is in January.
+pre_conditions.append(ForAll([h1], Implies(person_of_house(h1) == Peter, birthday_of_house(h1) == jan)))
+
+# Solve
+s = Solver()
+s.add(pre_conditions)
+if s.check() == sat:
+    m = s.model()
+    models = []
+    for num, h in enumerate(houses):
+        model = {
+            'House': str(num + 1),
+            'Name': m.evaluate(person_of_house(h)),
+            'CarModel': m.evaluate(car_model_of_house(h)),
+            'Birthday': m.evaluate(birthday_of_house(h)),
+            'Hobby': m.evaluate(hobby_of_house(h))
+        }
+        models.append(model)
+    print(models)
+else:
+    print("UNSAT")
+```
+
+## Error message:
+  File "", line 55, in <module>
+    pre_conditions.append(ForAll([h1, h2], Implies(And(hobby_of_house(h1) == photography, person_of_house(h2) == Eric), houses.index(h1) < houses.index(h2))))
+                                                                                                                        ~~~~~~~~~~~~^^^^
+ValueError: h1 is not in list
+
+## Code:
+```python
+# Declarations
+house_sort, (house1, house2, house3, house4) = EnumSort('house', ['house1', 'house2', 'house3', 'house4'])
+houses = [house1, house2, house3, house4]
+person_sort, (Eric, Peter, Alice, Arnold) = EnumSort('person', ['Eric', 'Peter', 'Alice', 'Arnold'])
+persons = [Eric, Peter, Alice, Arnold]
+car_model_sort, (tesla_model_3, honda_civic, toyota_camry, ford_f150) = EnumSort('car_model', ['tesla_model_3', 'honda_civic', 'toyota_camry', 'ford_f150'])
+car_models = [tesla_model_3, honda_civic, toyota_camry, ford_f150]
+birthday_sort, (jan, april, sept, feb) = EnumSort('birthday', ['jan', 'april', 'sept', 'feb'])
+birthdays = [jan, april, sept, feb]
+hobby_sort, (painting, cooking, gardening, photography) = EnumSort('hobby', ['painting', 'cooking', 'gardening', 'photography'])
+hobbies = [painting, cooking, gardening, photography]
+person_of_house = Function('person_of_house', house_sort, person_sort)
+car_model_of_house = Function('car_model_of_house', house_sort, car_model_sort)
+birthday_of_house = Function('birthday_of_house', house_sort, birthday_sort)
+hobby_of_house = Function('hobby_of_house', house_sort, hobby_sort)
+house_position = Function('house_position', house_sort, IntSort())
+
+# Constraints
+pre_conditions = []
+# Domain constraints
+pre_conditions.append(Distinct([person_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([car_model_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([birthday_of_house(h) for h in houses]))
+pre_conditions.append(Distinct([hobby_of_house(h) for h in houses]))
+for i, house in enumerate(houses):
+    pre_conditions.append(house_position(house) == i)
+# clues
+# The person whose birthday is in January is not in the second house.
+pre_conditions.append(birthday_of_house(house2) != jan)
+# The photography enthusiast is somewhere to the left of Eric.
+h1 = Const('h1', house_sort)
+h2 = Const('h2', house_sort)
+pre_conditions.append(ForAll([h1, h2], Implies(And(hobby_of_house(h1) == photography, person_of_house(h2) == Eric), house_position(h1) < house_position(h2))))
+# The photography enthusiast is somewhere to the left of Peter.
+pre_conditions.append(ForAll([h1, h2], Implies(And(hobby_of_house(h1) == photography, person_of_house(h2) == Peter), house_position(h1) < house_position(h2))))
+# The person who owns a Honda Civic is directly left of the person who owns a Tesla Model 3.
+pre_conditions.append(ForAll([h1, h2], Implies(And(car_model_of_house(h1) == honda_civic, car_model_of_house(h2) == tesla_model_3), house_position(h1) == house_position(h2) - 1)))
+# There is one house between the person who owns a Tesla Model 3 and the person who enjoys gardening.
+pre_conditions.append(ForAll([h1, h2], Implies(And(car_model_of_house(h1) == tesla_model_3, hobby_of_house(h2) == gardening), Abs(house_position(h1) - house_position(h2)) == 2)))
+# The person who owns a Tesla Model 3 is Arnold.
+pre_conditions.append(ForAll([h1], Implies(car_model_of_house(h1) == tesla_model_3, person_of_house(h1) == Arnold)))
+# The person whose birthday is in February is the person who loves cooking.
+pre_conditions.append(ForAll([h1], Implies(birthday_of_house(h1) == feb, hobby_of_house(h1) == cooking)))
+# The person who owns a Toyota Camry is Peter.
+pre_conditions.append(ForAll([h1], Implies(car_model_of_house(h1) == toyota_camry, person_of_house(h1) == Peter)))
+# The person whose birthday is in April is Arnold.
+pre_conditions.append(ForAll([h1], Implies(birthday_of_house(h1) == april, person_of_house(h1) == Arnold)))
+# Alice is the photography enthusiast.
+pre_conditions.append(ForAll([h1], Implies(person_of_house(h1) == Alice, hobby_of_house(h1) == photography)))
+# Peter is the person whose birthday is in January.
+pre_conditions.append(ForAll([h1], Implies(person_of_house(h1) == Peter, birthday_of_house(h1) == jan)))
+
+# Solve
+s = Solver()
+s.add(pre_conditions)
+if s.check() == sat:
+    m = s.model()
+    models = []
+    for num, h in enumerate(houses):
+        model = {
+            'House': str(num + 1),
+            'Name': m.evaluate(person_of_house(h)),
+            'CarModel': m.evaluate(car_model_of_house(h)),
+            'Birthday': m.evaluate(birthday_of_house(h)),
+            'Hobby': m.evaluate(hobby_of_house(h))
+        }
+        models.append(model)
+    print(models)
+else:
+    print("UNSAT")
+```
+------
+Problem:
+[[PROBLEM]]
+Headers:
+[[HEADERS]]
+Code:

@@ -1,0 +1,219 @@
+[
+  {
+    "source": "zebralogic-grid-lgp-test-4x3-25",
+    "mode": "grid",
+    "id": "lgp-test-4x3-25",
+    "size": "4*3",
+    "puzzle": "There are 4 houses, numbered 1 to 4 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Peter`, `Eric`, `Alice`, `Arnold`\n - Everyone has a favorite smoothie: `watermelon`, `desert`, `cherry`, `dragonfruit`\n - Each person has a favorite color: `green`, `white`, `red`, `yellow`\n\n## Clues:\n1. The Dragonfruit smoothie lover is Eric.\n2. The person who likes Cherry smoothies is in the second house.\n3. The Dragonfruit smoothie lover is in the fourth house.\n4. Arnold is the Watermelon smoothie lover.\n5. The person who loves white is in the first house.\n6. Peter is the person who loves white.\n7. The person who loves yellow is the Watermelon smoothie lover.\n8. The Dragonfruit smoothie lover is the person whose favorite color is red.\n",
+    "solution": {
+      "header": [
+        "House",
+        "Name",
+        "Smoothie",
+        "Color"
+      ],
+      "rows": [
+        [
+          "1",
+          "Peter",
+          "desert",
+          "white"
+        ],
+        [
+          "2",
+          "Alice",
+          "cherry",
+          "green"
+        ],
+        [
+          "3",
+          "Arnold",
+          "watermelon",
+          "yellow"
+        ],
+        [
+          "4",
+          "Eric",
+          "dragonfruit",
+          "red"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-4x3-25#mc-3",
+    "mode": "mc",
+    "id": "lgp-test-4x3-25#mc-3",
+    "grid_id": "lgp-test-4x3-25",
+    "puzzle": "There are 4 houses, numbered 1 to 4 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Peter`, `Eric`, `Alice`, `Arnold`\n - Everyone has a favorite smoothie: `watermelon`, `desert`, `cherry`, `dragonfruit`\n - Each person has a favorite color: `green`, `white`, `red`, `yellow`\n\n## Clues:\n1. The Dragonfruit smoothie lover is Eric.\n2. The person who likes Cherry smoothies is in the second house.\n3. The Dragonfruit smoothie lover is in the fourth house.\n4. Arnold is the Watermelon smoothie lover.\n5. The person who loves white is in the first house.\n6. Peter is the person who loves white.\n7. The person who loves yellow is the Watermelon smoothie lover.\n8. The Dragonfruit smoothie lover is the person whose favorite color is red.\n",
+    "question": "What is Name of the person who lives in House 2?",
+    "choices": [
+      "Alice",
+      "Arnold",
+      "Eric",
+      "Peter"
+    ],
+    "answer": "Alice"
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-4x3-25#mc-5",
+    "mode": "mc",
+    "id": "lgp-test-4x3-25#mc-5",
+    "grid_id": "lgp-test-4x3-25",
+    "puzzle": "There are 4 houses, numbered 1 to 4 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Peter`, `Eric`, `Alice`, `Arnold`\n - Everyone has a favorite smoothie: `watermelon`, `desert`, `cherry`, `dragonfruit`\n - Each person has a favorite color: `green`, `white`, `red`, `yellow`\n\n## Clues:\n1. The Dragonfruit smoothie lover is Eric.\n2. The person who likes Cherry smoothies is in the second house.\n3. The Dragonfruit smoothie lover is in the fourth house.\n4. Arnold is the Watermelon smoothie lover.\n5. The person who loves white is in the first house.\n6. Peter is the person who loves white.\n7. The person who loves yellow is the Watermelon smoothie lover.\n8. The Dragonfruit smoothie lover is the person whose favorite color is red.\n",
+    "question": "What is Color of the person who lives in House 2?",
+    "choices": [
+      "yellow",
+      "white",
+      "red",
+      "green"
+    ],
+    "answer": "green"
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-4x3-25#mc-1",
+    "mode": "mc",
+    "id": "lgp-test-4x3-25#mc-1",
+    "grid_id": "lgp-test-4x3-25",
+    "puzzle": "There are 4 houses, numbered 1 to 4 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Peter`, `Eric`, `Alice`, `Arnold`\n - Everyone has a favorite smoothie: `watermelon`, `desert`, `cherry`, `dragonfruit`\n - Each person has a favorite color: `green`, `white`, `red`, `yellow`\n\n## Clues:\n1. The Dragonfruit smoothie lover is Eric.\n2. The person who likes Cherry smoothies is in the second house.\n3. The Dragonfruit smoothie lover is in the fourth house.\n4. Arnold is the Watermelon smoothie lover.\n5. The person who loves white is in the first house.\n6. Peter is the person who loves white.\n7. The person who loves yellow is the Watermelon smoothie lover.\n8. The Dragonfruit smoothie lover is the person whose favorite color is red.\n",
+    "question": "What is Smoothie of the person who lives in House 1?",
+    "choices": [
+      "cherry",
+      "dragonfruit",
+      "watermelon",
+      "desert"
+    ],
+    "answer": "desert"
+  },
+  {
+    "source": "zebralogic-grid-lgp-test-3x6-14",
+    "mode": "grid",
+    "id": "lgp-test-3x6-14",
+    "size": "3*6",
+    "puzzle": "There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Eric`, `Arnold`, `Peter`\n - People own unique car models: `ford f150`, `tesla model 3`, `toyota camry`\n - Each person prefers a unique type of vacation: `beach`, `mountain`, `city`\n - The people are of nationalities: `dane`, `swede`, `brit`\n - People have unique hair colors: `blonde`, `black`, `brown`\n - Each person lives in a unique style of house: `colonial`, `ranch`, `victorian`\n\n## Clues:\n1. The Swedish person is the person who owns a Ford F-150.\n2. The person who has blonde hair is not in the second house.\n3. The person who owns a Toyota Camry and Arnold are next to each other.\n4. The person who has black hair is somewhere to the right of the person in a ranch-style home.\n5. The person who has black hair is the Dane.\n6. The person residing in a Victorian house is not in the second house.\n7. Peter is directly left of the person who loves beach vacations.\n8. The person living in a colonial-style house is the person who has blonde hair.\n9. The person who has black hair is Arnold.\n10. The Dane is the person who loves beach vacations.\n11. Peter is the person who prefers city breaks.\n",
+    "solution": {
+      "header": [
+        "House",
+        "Name",
+        "CarModel",
+        "Vacation",
+        "Nationality",
+        "HairColor",
+        "HouseStyle"
+      ],
+      "rows": [
+        [
+          "1",
+          "Eric",
+          "ford f150",
+          "mountain",
+          "swede",
+          "blonde",
+          "colonial"
+        ],
+        [
+          "2",
+          "Peter",
+          "toyota camry",
+          "city",
+          "brit",
+          "brown",
+          "ranch"
+        ],
+        [
+          "3",
+          "Arnold",
+          "tesla model 3",
+          "beach",
+          "dane",
+          "black",
+          "victorian"
+        ]
+      ]
+    }
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-3x6-14#mc-13",
+    "mode": "mc",
+    "id": "lgp-test-3x6-14#mc-13",
+    "grid_id": "lgp-test-3x6-14",
+    "puzzle": "There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Eric`, `Arnold`, `Peter`\n - People own unique car models: `ford f150`, `tesla model 3`, `toyota camry`\n - Each person prefers a unique type of vacation: `beach`, `mountain`, `city`\n - The people are of nationalities: `dane`, `swede`, `brit`\n - People have unique hair colors: `blonde`, `black`, `brown`\n - Each person lives in a unique style of house: `colonial`, `ranch`, `victorian`\n\n## Clues:\n1. The Swedish person is the person who owns a Ford F-150.\n2. The person who has blonde hair is not in the second house.\n3. The person who owns a Toyota Camry and Arnold are next to each other.\n4. The person who has black hair is somewhere to the right of the person in a ranch-style home.\n5. The person who has black hair is the Dane.\n6. The person residing in a Victorian house is not in the second house.\n7. Peter is directly left of the person who loves beach vacations.\n8. The person living in a colonial-style house is the person who has blonde hair.\n9. The person who has black hair is Arnold.\n10. The Dane is the person who loves beach vacations.\n11. Peter is the person who prefers city breaks.\n",
+    "question": "What is CarModel of the person who lives in House 3?",
+    "choices": [
+      "tesla model 3",
+      "toyota camry",
+      "ford f150"
+    ],
+    "answer": "tesla model 3"
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-3x6-14#mc-0",
+    "mode": "mc",
+    "id": "lgp-test-3x6-14#mc-0",
+    "grid_id": "lgp-test-3x6-14",
+    "puzzle": "There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Eric`, `Arnold`, `Peter`\n - People own unique car models: `ford f150`, `tesla model 3`, `toyota camry`\n - Each person prefers a unique type of vacation: `beach`, `mountain`, `city`\n - The people are of nationalities: `dane`, `swede`, `brit`\n - People have unique hair colors: `blonde`, `black`, `brown`\n - Each person lives in a unique style of house: `colonial`, `ranch`, `victorian`\n\n## Clues:\n1. The Swedish person is the person who owns a Ford F-150.\n2. The person who has blonde hair is not in the second house.\n3. The person who owns a Toyota Camry and Arnold are next to each other.\n4. The person who has black hair is somewhere to the right of the person in a ranch-style home.\n5. The person who has black hair is the Dane.\n6. The person residing in a Victorian house is not in the second house.\n7. Peter is directly left of the person who loves beach vacations.\n8. The person living in a colonial-style house is the person who has blonde hair.\n9. The person who has black hair is Arnold.\n10. The Dane is the person who loves beach vacations.\n11. Peter is the person who prefers city breaks.\n",
+    "question": "What is Name of the person who lives in House 1?",
+    "choices": [
+      "Arnold",
+      "Eric",
+      "Peter"
+    ],
+    "answer": "Eric"
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-3x6-14#mc-2",
+    "mode": "mc",
+    "id": "lgp-test-3x6-14#mc-2",
+    "grid_id": "lgp-test-3x6-14",
+    "puzzle": "There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Eric`, `Arnold`, `Peter`\n - People own unique car models: `ford f150`, `tesla model 3`, `toyota camry`\n - Each person prefers a unique type of vacation: `beach`, `mountain`, `city`\n - The people are of nationalities: `dane`, `swede`, `brit`\n - People have unique hair colors: `blonde`, `black`, `brown`\n - Each person lives in a unique style of house: `colonial`, `ranch`, `victorian`\n\n## Clues:\n1. The Swedish person is the person who owns a Ford F-150.\n2. The person who has blonde hair is not in the second house.\n3. The person who owns a Toyota Camry and Arnold are next to each other.\n4. The person who has black hair is somewhere to the right of the person in a ranch-style home.\n5. The person who has black hair is the Dane.\n6. The person residing in a Victorian house is not in the second house.\n7. Peter is directly left of the person who loves beach vacations.\n8. The person living in a colonial-style house is the person who has blonde hair.\n9. The person who has black hair is Arnold.\n10. The Dane is the person who loves beach vacations.\n11. Peter is the person who prefers city breaks.\n",
+    "question": "What is Vacation of the person who lives in House 1?",
+    "choices": [
+      "city",
+      "mountain",
+      "beach"
+    ],
+    "answer": "mountain"
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-3x6-14#mc-10",
+    "mode": "mc",
+    "id": "lgp-test-3x6-14#mc-10",
+    "grid_id": "lgp-test-3x6-14",
+    "puzzle": "There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Eric`, `Arnold`, `Peter`\n - People own unique car models: `ford f150`, `tesla model 3`, `toyota camry`\n - Each person prefers a unique type of vacation: `beach`, `mountain`, `city`\n - The people are of nationalities: `dane`, `swede`, `brit`\n - People have unique hair colors: `blonde`, `black`, `brown`\n - Each person lives in a unique style of house: `colonial`, `ranch`, `victorian`\n\n## Clues:\n1. The Swedish person is the person who owns a Ford F-150.\n2. The person who has blonde hair is not in the second house.\n3. The person who owns a Toyota Camry and Arnold are next to each other.\n4. The person who has black hair is somewhere to the right of the person in a ranch-style home.\n5. The person who has black hair is the Dane.\n6. The person residing in a Victorian house is not in the second house.\n7. Peter is directly left of the person who loves beach vacations.\n8. The person living in a colonial-style house is the person who has blonde hair.\n9. The person who has black hair is Arnold.\n10. The Dane is the person who loves beach vacations.\n11. Peter is the person who prefers city breaks.\n",
+    "question": "What is HairColor of the person who lives in House 2?",
+    "choices": [
+      "black",
+      "blonde",
+      "brown"
+    ],
+    "answer": "brown"
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-3x6-14#mc-9",
+    "mode": "mc",
+    "id": "lgp-test-3x6-14#mc-9",
+    "grid_id": "lgp-test-3x6-14",
+    "puzzle": "There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Eric`, `Arnold`, `Peter`\n - People own unique car models: `ford f150`, `tesla model 3`, `toyota camry`\n - Each person prefers a unique type of vacation: `beach`, `mountain`, `city`\n - The people are of nationalities: `dane`, `swede`, `brit`\n - People have unique hair colors: `blonde`, `black`, `brown`\n - Each person lives in a unique style of house: `colonial`, `ranch`, `victorian`\n\n## Clues:\n1. The Swedish person is the person who owns a Ford F-150.\n2. The person who has blonde hair is not in the second house.\n3. The person who owns a Toyota Camry and Arnold are next to each other.\n4. The person who has black hair is somewhere to the right of the person in a ranch-style home.\n5. The person who has black hair is the Dane.\n6. The person residing in a Victorian house is not in the second house.\n7. Peter is directly left of the person who loves beach vacations.\n8. The person living in a colonial-style house is the person who has blonde hair.\n9. The person who has black hair is Arnold.\n10. The Dane is the person who loves beach vacations.\n11. Peter is the person who prefers city breaks.\n",
+    "question": "What is Nationality of the person who lives in House 2?",
+    "choices": [
+      "swede",
+      "dane",
+      "brit"
+    ],
+    "answer": "brit"
+  },
+  {
+    "source": "zebralogic-mc-lgp-test-3x6-14#mc-3",
+    "mode": "mc",
+    "id": "lgp-test-3x6-14#mc-3",
+    "grid_id": "lgp-test-3x6-14",
+    "puzzle": "There are 3 houses, numbered 1 to 3 from left to right, as seen from across the street. Each house is occupied by a different person. Each house has a unique attribute for each of the following characteristics:\n - Each person has a unique name: `Eric`, `Arnold`, `Peter`\n - People own unique car models: `ford f150`, `tesla model 3`, `toyota camry`\n - Each person prefers a unique type of vacation: `beach`, `mountain`, `city`\n - The people are of nationalities: `dane`, `swede`, `brit`\n - People have unique hair colors: `blonde`, `black`, `brown`\n - Each person lives in a unique style of house: `colonial`, `ranch`, `victorian`\n\n## Clues:\n1. The Swedish person is the person who owns a Ford F-150.\n2. The person who has blonde hair is not in the second house.\n3. The person who owns a Toyota Camry and Arnold are next to each other.\n4. The person who has black hair is somewhere to the right of the person in a ranch-style home.\n5. The person who has black hair is the Dane.\n6. The person residing in a Victorian house is not in the second house.\n7. Peter is directly left of the person who loves beach vacations.\n8. The person living in a colonial-style house is the person who has blonde hair.\n9. The person who has black hair is Arnold.\n10. The Dane is the person who loves beach vacations.\n11. Peter is the person who prefers city breaks.\n",
+    "question": "What is Nationality of the person who lives in House 1?",
+    "choices": [
+      "swede",
+      "dane",
+      "brit"
+    ],
+    "answer": "swede"
+  }
+]
