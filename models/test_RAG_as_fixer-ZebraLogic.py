@@ -2,10 +2,13 @@
 this script tests with RAG module on ZebraLogic benchmark (grid_mode).
 Translator generates Z3 programs; RAG fixer corrects them.
 Answer is a JSON list of dicts (one per house), compared after normalization.
+
+Supports checkpoint/resume: results are appended to a fixed JSONL file.
+If interrupted, re-run the script and it will skip already-processed samples.
 '''
 
-from models.utils.utils import OpenAIModel, execute_logic_program, loading_kb_with_da, RAGFixer
-from models.utils.LLM_config import LLM_CONFIG
+from utils.utils import OpenAIModel, execute_logic_program, loading_kb_with_da, RAGFixer
+from utils.LLM_config import LLM_CONFIG
 import os
 import json
 import dspy
@@ -18,12 +21,14 @@ from datetime import datetime
 
 # ------------ SETTING ------------
 embedder_config = LLM_CONFIG["embedder"]
-llm_name = "o3-mini"  # ["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini"]
+llm_name = "dpsk-chat"  # ["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini"]
 dataset_name = "ZebraLogic"
 
 data_fpath = "./benchmarks/ZebraLogic/grid_mode_sampled.json"
 result_save_dir = f"./evaluation_result/RAG-fixer-{dataset_name}"
 os.makedirs(result_save_dir, exist_ok=True)
+# Fixed JSONL path for checkpoint/resume
+result_jsonl_path = os.path.join(result_save_dir, f"result-{llm_name}.jsonl")
 
 # translator prompt
 gen_prompt_path = "./prompts/z3program_generation_ZebraLogic.txt"
@@ -74,9 +79,11 @@ def _load_or_create_embeddings(cache_dir, prefix, corpus_dict, embedder, topk):
 LSAT_corpus_dict = loading_kb_with_da('AR-LSAT')
 FOLIO_corpus_dict = loading_kb_with_da('FOLIO')
 
+# batch_size=10 to stay well under the 300k-token-per-request limit
 embedder = dspy.Embedder(model=embedder_config.llm_name,
                          api_key=embedder_config.api_key,
-                         api_base=embedder_config.base_url)
+                         api_base=embedder_config.base_url,
+                         batch_size=10)
 topk_to_retrieve = 1
 
 LSAT_retrievers = _load_or_create_embeddings(
@@ -155,11 +162,63 @@ def compare_answers(gold_solution, pred_list):
 # ------------ end helpers ------------
 
 
+# ------------ Checkpoint helpers ------------
+def load_checkpoint(jsonl_path):
+    """Load previously saved results from JSONL, return dict of id->result."""
+    checkpoint = {}
+    if not os.path.exists(jsonl_path):
+        return checkpoint
+    print(f"Loading checkpoint from {jsonl_path} ...")
+    with open(jsonl_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            rec = json.loads(line)
+            checkpoint[rec["id"]] = rec
+    print(f"  Found {len(checkpoint)} completed samples.")
+    return checkpoint
+
+
+def append_result(jsonl_path, result_dict):
+    """Append one result as a JSON line to the JSONL file."""
+    with open(jsonl_path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(result_dict, ensure_ascii=False) + "\n")
+
+
+def compute_and_print_accuracy(results):
+    """Compute and print accuracy stats from a list of result dicts."""
+    size_stats = {}
+    for r in results:
+        sz = r["size"]
+        if sz not in size_stats:
+            size_stats[sz] = {"correct": 0, "total": 0}
+        size_stats[sz]["total"] += 1
+        if r.get("is_correct"):
+            size_stats[sz]["correct"] += 1
+
+    total_correct = sum(s["correct"] for s in size_stats.values())
+    total_all = sum(s["total"] for s in size_stats.values())
+
+    print(f"Accuracy: {total_correct}/{total_all} = {total_correct / total_all * 100:.2f}%")
+    print("\nPer-size accuracy:")
+    for sz in sorted(size_stats, key=lambda x: [int(v) for v in x.split('*')]):
+        s = size_stats[sz]
+        rate = s["correct"] / s["total"] * 100
+        print(f"  {sz:5s}: {s['correct']:2d}/{s['total']:2d} ({rate:5.1f}%)")
+
 # ------------ evaluation loop ------------
-test_result = []
+checkpoint = load_checkpoint(result_jsonl_path)
+# Collect all results in memory (loaded checkpoint + newly computed)
+all_results = list(checkpoint.values())
 internet_issues = []
 
 for sample in tqdm(test_data):
+    # Skip if already processed in a previous run
+    if sample["id"] in checkpoint:
+        print(f"*****{sample['id']}***** (skipped, already in checkpoint)")
+        continue
+
     print(f"*****{sample['id']}*****")
 
     puzzle = sample["puzzle"]
@@ -257,37 +316,15 @@ for sample in tqdm(test_data):
         "answer": answer,
         "is_correct": is_correct,
     }
-    test_result.append(result_dict)
+
+    # Persist immediately to JSONL
+    append_result(result_jsonl_path, result_dict)
+    all_results.append(result_dict)
     print(f"is_correct: {is_correct}")
 
-# ---- Save results ----
-result_path = os.path.join(
-    result_save_dir,
-    f"result-teston-{datetime.now().strftime('%m%d-%H%M%S')}-{llm_name}-unique-samples.json"
-)
-with open(result_path, "w", encoding='utf-8') as f:
-    json.dump(test_result, f, indent=2, ensure_ascii=False)
-
-# ---- Print per-size accuracy ----
-size_stats = {}
-for r in test_result:
-    sz = r["size"]
-    if sz not in size_stats:
-        size_stats[sz] = {"correct": 0, "total": 0}
-    size_stats[sz]["total"] += 1
-    if r.get("is_correct"):
-        size_stats[sz]["correct"] += 1
-
-total_correct = sum(s["correct"] for s in size_stats.values())
-total_all = sum(s["total"] for s in size_stats.values())
-
-print(f"\nresult saved in {result_path}")
-print(f"Accuracy: {total_correct}/{total_all} = {total_correct / total_all * 100:.2f}%")
-print("\nPer-size accuracy:")
-for sz in sorted(size_stats, key=lambda x: [int(v) for v in x.split('*')]):
-    s = size_stats[sz]
-    rate = s["correct"] / s["total"] * 100
-    print(f"  {sz:5s}: {s['correct']:2d}/{s['total']:2d} ({rate:5.1f}%)")
+# ---- Print accuracy from all results ----
+print(f"\nAll results saved in {result_jsonl_path}")
+compute_and_print_accuracy(all_results)
 
 if internet_issues:
     print(f"\ninternet issues id: {internet_issues}")

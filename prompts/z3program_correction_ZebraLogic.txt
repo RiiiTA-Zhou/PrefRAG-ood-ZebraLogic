@@ -500,4 +500,10 @@ Problem:
 [[PROBLEM]]
 Headers:
 [[HEADERS]]
+Error Program:
+```python
+[[ERRORPROGRAM]]
+```
+Error message:
+[[ERRORMSG]]
 Code:

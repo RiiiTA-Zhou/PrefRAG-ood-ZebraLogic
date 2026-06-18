@@ -17,8 +17,8 @@ import time
 
 
 # ------------ SETTING ------------
-llm_name = "o3-mini"          # ["dpsk-chat", "dpsk-reasoner", "gpt-4o", "o3-mini"]
-baseline = 'CoT'                # ['direct', 'CoT']
+llm_name = "dpsk-reasoner"          # ["dpsk-chat", "dpsk-reasoner", "gpt-4o", "o3-mini"]
+baseline = 'direct'                # ['direct', 'CoT']
 
 # ------------ SETTING ------------
 
