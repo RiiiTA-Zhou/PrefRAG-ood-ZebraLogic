@@ -61,3 +61,28 @@ There are three implementations for ARLSAT, FOLIO and ood datasets respectively.
 ❗ Before running, set the LLM config in `./models/utils/LLM_config.py`. There is a template for reference `./models/utils/LLM_config_template.py`.
 
 Evaluation: `./models/eval.py`
+
+
+### Running Evaluation Scripts
+
+All evaluation scripts accept the model name via `--llm`. Available choices: `gpt-4o`, `dpsk-chat`, `dpsk-reasoner`, `o3-mini`.
+
+**RAG-as-fixer (OOD):**
+```bash
+python models/test_RAG_as_fixer-ZebraLogic.py --llm gpt-4o
+python models/test_RAG_as_fixer-ZebraLogic.py --llm dpsk-reasoner
+# Default: --llm dpsk-chat
+```
+
+**Logic-LM baseline (Z3 generation + correction loop):**
+```bash
+python baselines/evaluation_logiclm_zebraLogic.py --llm dpsk-reasoner
+# Default: --llm dpsk-reasoner
+```
+
+**Direct / CoT baseline:**
+```bash
+python baselines/evaluation_zebralogic.py --llm gpt-4o --baseline CoT
+python baselines/evaluation_zebralogic.py --llm dpsk-chat --baseline direct
+# Default: --llm dpsk-reasoner --baseline direct
+```

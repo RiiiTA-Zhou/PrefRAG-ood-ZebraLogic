@@ -19,9 +19,16 @@ import re
 import ast
 from tqdm import tqdm
 import time
+import argparse
 
 # ------------ SETTING ------------
-llm_name = "dpsk-reasoner"          # ["dpsk-chat", "dpsk-reasoner", "gpt-4o", "o3-mini"]
+parser = argparse.ArgumentParser(description="Logic-LM evaluation for ZebraLogic")
+parser.add_argument("--llm", type=str, default="dpsk-reasoner",
+                    choices=["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini"],
+                    help="Model name (must match a key in LLM_CONFIG)")
+args = parser.parse_args()
+
+llm_name = args.llm
 # ------------ SETTING ------------
 
 base_dir = os.path.dirname(os.path.abspath(__file__))

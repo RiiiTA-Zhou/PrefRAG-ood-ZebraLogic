@@ -12,13 +12,22 @@ from baselines.utils import OpenAIModel
 from LLM_config import LLM_CONFIG
 import json
 import re
+import argparse
 from tqdm import tqdm
 import time
 
 
 # ------------ SETTING ------------
-llm_name = "dpsk-reasoner"          # ["dpsk-chat", "dpsk-reasoner", "gpt-4o", "o3-mini"]
-baseline = 'direct'                # ['direct', 'CoT']
+parser = argparse.ArgumentParser(description="Evaluate ZebraLogic with direct or CoT baseline")
+parser.add_argument("--llm", type=str, default="dpsk-reasoner",
+                    choices=["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini"],
+                    help="Model name (must match a key in LLM_CONFIG)")
+parser.add_argument("--baseline", type=str, default="direct", choices=["direct", "CoT"],
+                    help="Baseline type")
+args = parser.parse_args()
+
+llm_name = args.llm
+baseline = args.baseline
 
 # ------------ SETTING ------------
 
@@ -27,7 +36,7 @@ prompt_template_fpath = os.path.join(base_dir, "prompts", f"ZebraLogic_{baseline
 result_save_fpath = os.path.join(base_dir, "results", f"ZebraLogic_{baseline}_{llm_name}.json")
 data_fpath = os.path.join(base_dir, "..", "benchmarks", "ZebraLogic", "grid_mode_sampled.json")
 
-llm = OpenAIModel(LLM_CONFIG[llm_name], max_new_tokens=2048, temp=0)
+llm = OpenAIModel(LLM_CONFIG[llm_name], max_new_tokens=3000, temp=0)
 
 with open(data_fpath, "r", encoding='utf-8') as f:
     sample_list = json.load(f)

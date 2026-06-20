@@ -17,11 +17,18 @@ import ast
 from tqdm import tqdm
 import time
 import re
+import argparse
 from datetime import datetime
 
 # ------------ SETTING ------------
+parser = argparse.ArgumentParser(description="Test RAG-as-fixer on ZebraLogic")
+parser.add_argument("--llm", type=str, default="dpsk-chat",
+                    choices=["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini"],
+                    help="Model name (must match a key in LLM_CONFIG)")
+args = parser.parse_args()
+
 embedder_config = LLM_CONFIG["embedder"]
-llm_name = "dpsk-chat"  # ["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini"]
+llm_name = args.llm
 dataset_name = "ZebraLogic"
 
 data_fpath = "./benchmarks/ZebraLogic/grid_mode_sampled.json"
