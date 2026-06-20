@@ -119,10 +119,14 @@ with open(data_fpath, 'r', encoding='utf-8') as f:
 
 # ------------ ZebraLogic answer helpers ------------
 def extract_json_from_stdout(stdout_lines):
-    """Parse the JSON list printed by the Z3 program's print(models)."""
+    """Parse the JSON list printed by the Z3 program's print(models).
+       Z3 outputs Python repr with bare enum identifiers (e.g. Arnold, prince),
+       which is not valid JSON.  Handles both standard JSON and Z3 repr format."""
     if not stdout_lines:
         return None
     text = "".join(stdout_lines).strip()
+    if not text:
+        return None
     # Try json.loads first (for json.dumps output)
     try:
         return json.loads(text)
@@ -131,6 +135,20 @@ def extract_json_from_stdout(stdout_lines):
     # Try ast.literal_eval (for Python repr like [{'House': '1', ...}])
     try:
         return ast.literal_eval(text)
+    except Exception:
+        pass
+    # Handle Z3 repr: bare enum identifiers like Arnold, prince (not quoted)
+    # Convert them to valid JSON by quoting bare words in value positions
+    try:
+        # Step 1: quote bare identifiers that appear after : or , or [
+        fixed = re.sub(
+            r'(?<=[\:\,\[])\s*([A-Za-z_]\w+)(?=\s*[\}\]\,])',
+            lambda m: '"' + m.group(1) + '"',
+            text,
+        )
+        # Step 2: convert remaining single quotes to double quotes (JSON requires double quotes)
+        fixed = fixed.replace("'", '"')
+        return json.loads(fixed)
     except Exception:
         pass
     return None
