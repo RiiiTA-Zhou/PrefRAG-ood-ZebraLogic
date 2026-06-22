@@ -38,7 +38,7 @@ generation_prompt_path = os.path.join(base_dir, '..', 'prompts', 'z3program_gene
 correction_prompt_path  = os.path.join(base_dir, '..', 'prompts', 'z3program_correction_ZebraLogic.txt')
 cot_prompt_path         = os.path.join(base_dir, 'prompts', 'ZebraLogic_CoT.txt')
 data_fpath              = os.path.join(base_dir, '..', 'benchmarks', 'ZebraLogic', 'grid_mode_sampled.json')
-result_save_path        = os.path.join(base_dir, 'results', f'ZebraLogic_LogicLM_{llm_name}.json')
+result_save_path        = os.path.join(base_dir, 'LogicLM-results', f'ZebraLogic_LogicLM_{llm_name}.jsonl')
 cache_dir               = os.path.join(base_dir, '.cache_program')
 
 llm = OpenAIModel(LLM_CONFIG[llm_name], max_new_tokens=4096, temp=0)
@@ -68,18 +68,35 @@ program_pattern = r"```python(.*?)```"
 # ------------ Helpers ------------
 def extract_json_from_stdout(stdout_lines):
     """Parse the JSON list printed by the Z3 program's print(models).
-       Handles both json.dumps and Python repr output."""
+       Z3 outputs Python repr with bare enum identifiers (e.g. Arnold, prince),
+       which is not valid JSON.  Handles both standard JSON and Z3 repr format."""
     if not stdout_lines:
         return None
     text = "".join(stdout_lines).strip()
-    # Try json.loads first
+    if not text:
+        return None
+    # Try json.loads first (for json.dumps output)
     try:
         return json.loads(text)
     except Exception:
         pass
-    # Try ast.literal_eval
+    # Try ast.literal_eval (for Python repr like [{'House': '1', ...}])
     try:
         return ast.literal_eval(text)
+    except Exception:
+        pass
+    # Handle Z3 repr: bare enum identifiers like Arnold, prince (not quoted)
+    # Convert them to valid JSON by quoting bare words in value positions
+    try:
+        # Step 1: quote bare identifiers that appear after : or , or [
+        fixed = re.sub(
+            r'(?<=[\:\,\[])\s*([A-Za-z_]\w+)(?=\s*[\}\]\,])',
+            lambda m: '"' + m.group(1) + '"',
+            text,
+        )
+        # Step 2: convert remaining single quotes to double quotes (JSON requires double quotes)
+        fixed = fixed.replace("'", '"')
+        return json.loads(fixed)
     except Exception:
         pass
     return None
@@ -204,12 +221,43 @@ def run_z3_and_parse(program_text):
     return None, exec_dict
 
 
+# ------------ Checkpoint helpers (JSONL) ------------
+def load_checkpoint(jsonl_path):
+    """Load previously saved results from JSONL, return dict of id->result."""
+    checkpoint = {}
+    if not os.path.exists(jsonl_path):
+        return checkpoint
+    print(f"Loading checkpoint from {jsonl_path} ...")
+    with open(jsonl_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            rec = json.loads(line)
+            checkpoint[rec["id"]] = rec
+    print(f"  Found {len(checkpoint)} completed samples.")
+    return checkpoint
+
+
+def append_result(jsonl_path, result_dict):
+    """Append one result as a JSON line to the JSONL file."""
+    with open(jsonl_path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(result_dict, ensure_ascii=False) + "\n")
+
+
 # ------------ Evaluation loop ------------
-results = []
+checkpoint = load_checkpoint(result_save_path)
+all_results = list(checkpoint.values())   # accumulated results (checkpoint + new)
 internet_issues = []
 
 for sample in tqdm(test_data):
     sid = sample["id"]
+
+    # Skip if already processed
+    if sid in checkpoint:
+        print(f"\n***** {sid} ***** (skipped, already in checkpoint)")
+        continue
+
     print(f"\n***** {sid} *****")
 
     puzzle, headers_str = get_nl_story_and_headers(sample)
@@ -227,22 +275,25 @@ for sample in tqdm(test_data):
                      "raw_output": raw_gen}]
 
     # ---- Step 2: Execute & correct loop (up to 3 corrections) ----
+    # Only syntax/runtime errors (flag='execution error') enter the correction loop.
+    # Semantic errors (no output or unparseable output) are NOT corrected — the
+    # program ran to completion but simply didn't produce a valid answer, which
+    # means the LLM gave a flawed but runnable program; correcting without an
+    # error message would be meaningless.
     z3_answer = None
     final_exec = None
 
     parsed_out, exec_dict = run_z3_and_parse(program_text)
     programs_log[-1]["execution"] = exec_dict
+    programs_log[-1]["parsed_output"] = parsed_out
 
     if parsed_out is not None:
         z3_answer = parsed_out
         print(f"  Z3 succeeded on first try")
-    else:
-        # Correction loop
+    elif exec_dict["flag"] == "execution error":
+        # Only syntax/runtime errors can be corrected — we have a real error message
         for round_idx in range(3):
             error_msg = exec_dict.get("error_msg", "")
-            if not error_msg and exec_dict["flag"] == "semantic error":
-                error_msg = "No Output"
-
             print(f"  correction round {round_idx + 1} (flag={exec_dict['flag']})")
 
             new_program, raw_correct = correct_program(program_text, error_msg, puzzle, headers_str)
@@ -260,28 +311,37 @@ for sample in tqdm(test_data):
 
             parsed_out, exec_dict = run_z3_and_parse(new_program)
             programs_log[-1]["execution"] = exec_dict
+            programs_log[-1]["parsed_output"] = parsed_out
 
             if parsed_out is not None:
                 z3_answer = parsed_out
                 print(f"  Z3 succeeded after correction round {round_idx + 1}")
                 break
 
+            # If after correction we no longer have an execution error (e.g. success
+            # but unparseable, or semantic error), stop — can't correct further
+            if exec_dict["flag"] != "execution error":
+                print(f"  Non-execution-error (flag={exec_dict['flag']}), stopping correction")
+                break
+
             program_text = new_program
+    else:
+        # Semantic error (no output) or success but unparseable → not correctable
+        print(f"  Not correctable (flag={exec_dict['flag']}), skipping correction")
 
     # ---- Step 3: Evaluate Z3 answer ----
     raw_is_correct = False
     if z3_answer is not None and isinstance(z3_answer, list) and len(z3_answer) > 0:
         raw_is_correct = compare_answers(gold_answer, z3_answer)
 
-    # ---- Step 4: Main answer (fallback to CoT if Z3 failed) ----
+    # ---- Step 4: Main answer (fallback to CoT if Z3 never produced a valid answer) ----
     main_answer = z3_answer
     main_is_correct = raw_is_correct
     cot_answer = None
     cot_raw = None
 
     if z3_answer is None:
-        # Z3 never produced output → fallback to CoT
-        print("  Z3 failed after all rounds, falling back to CoT")
+        print("  Z3 did not produce a valid answer, falling back to CoT")
         cot_answer, cot_raw = generate_cot_answer(sample)
         if cot_answer is not None and isinstance(cot_answer, list) and len(cot_answer) > 0:
             main_answer = cot_answer
@@ -300,15 +360,14 @@ for sample in tqdm(test_data):
         "main_is_correct": main_is_correct,
         "programs": programs_log,
     }
-    results.append(result_dict)
+
+    # Persist immediately to JSONL
+    append_result(result_save_path, result_dict)
+    all_results.append(result_dict)
 
     print(f"  raw_correct={raw_is_correct}  main_correct={main_is_correct}")
 
-# ---- Save ----
-with open(result_save_path, "w", encoding='utf-8') as f:
-    json.dump(results, f, indent=2, ensure_ascii=False)
-
-# ---- Compute and print stats ----
+# ---- Compute and print stats from all_results (checkpoint + new) ----
 def print_accuracy(results, key, label):
     size_stats = {}
     for r in results:
@@ -334,12 +393,12 @@ def print_accuracy(results, key, label):
 print("\n" + "=" * 60)
 print("ACCURACY METRICS")
 print("=" * 60)
-print_accuracy(results, key="raw_is_correct",   label="Raw Accuracy (Z3-only)")
-print_accuracy(results, key="main_is_correct",   label="Main Accuracy (Z3 + CoT fallback)")
+print_accuracy(all_results, key="raw_is_correct",   label="Raw Accuracy (Z3-only)")
+print_accuracy(all_results, key="main_is_correct",   label="Main Accuracy (Z3 + CoT fallback)")
 
 # Execution rate & executive accuracy
 size_exec = {}  # size -> {"executable": 0, "exec_correct": 0, "total": 0}
-for r in results:
+for r in all_results:
     sz = r["size"]
     if sz not in size_exec:
         size_exec[sz] = {"executable": 0, "exec_correct": 0, "total": 0}
@@ -374,9 +433,9 @@ for sz in sorted(size_exec, key=lambda x: [int(v) for v in x.split('*')]):
     print(f"  {sz:5s}: {s['exec_correct']:2d}/{s['executable']:2d} ({r:5.1f}%)")
 
 # Fallback count
-n_fallback = sum(1 for r in results if r["cot_answer"] is not None)
-n_z3_success = sum(1 for r in results if r["z3_answer"] is not None)
-print(f"\nOut of {len(results)} samples:")
+n_fallback = sum(1 for r in all_results if r["cot_answer"] is not None)
+n_z3_success = sum(1 for r in all_results if r["z3_answer"] is not None)
+print(f"\nOut of {len(all_results)} samples:")
 print(f"  Z3 produced output:   {n_z3_success}")
 print(f"  Fallback to CoT:      {n_fallback}")
 
