@@ -280,8 +280,13 @@ for sample in tqdm(test_data):
     # program ran to completion but simply didn't produce a valid answer, which
     # means the LLM gave a flawed but runnable program; correcting without an
     # error message would be meaningless.
+    # After all attempts, if Z3 never managed to execute (execution error persisted
+    # through all correction rounds), main falls back to CoT.
+    # If Z3 ran (flag=success/semantic error) but produced no valid answer, main
+    # stays as None/False — no CoT fallback.
     z3_answer = None
     final_exec = None
+    z3_never_ran = False  # True = every attempt was an execution error (Z3 never ran)
 
     parsed_out, exec_dict = run_z3_and_parse(program_text)
     programs_log[-1]["execution"] = exec_dict
@@ -325,6 +330,10 @@ for sample in tqdm(test_data):
                 break
 
             program_text = new_program
+        else:
+            # for-else: executed only if loop completed without break
+            # All 3 correction rounds were execution errors — Z3 never ran
+            z3_never_ran = True
     else:
         # Semantic error (no output) or success but unparseable → not correctable
         print(f"  Not correctable (flag={exec_dict['flag']}), skipping correction")
@@ -334,14 +343,15 @@ for sample in tqdm(test_data):
     if z3_answer is not None and isinstance(z3_answer, list) and len(z3_answer) > 0:
         raw_is_correct = compare_answers(gold_answer, z3_answer)
 
-    # ---- Step 4: Main answer (fallback to CoT if Z3 never produced a valid answer) ----
+    # ---- Step 4: Main answer (fallback to CoT only if Z3 never executed) ----
     main_answer = z3_answer
     main_is_correct = raw_is_correct
     cot_answer = None
     cot_raw = None
 
-    if z3_answer is None:
-        print("  Z3 did not produce a valid answer, falling back to CoT")
+    if z3_answer is None and z3_never_ran:
+        # Z3 never managed to run (execution error persisted through all rounds)
+        print("  Z3 could not execute, falling back to CoT")
         cot_answer, cot_raw = generate_cot_answer(sample)
         if cot_answer is not None and isinstance(cot_answer, list) and len(cot_answer) > 0:
             main_answer = cot_answer

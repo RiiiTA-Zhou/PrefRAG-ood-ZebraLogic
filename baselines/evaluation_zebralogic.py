@@ -106,14 +106,32 @@ def compare_dicts(gold_list, pred_list):
     return True
 
 
+# ------------ Checkpoint: load existing results if any ------------
+def load_existing_results(fpath):
+    """Load existing results JSON file, return dict of id->result."""
+    if not os.path.exists(fpath):
+        return {}
+    print(f"Loading existing results from {fpath} ...")
+    with open(fpath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    checkpoint = {r["id"]: r for r in data}
+    print(f"  Found {len(checkpoint)} samples.")
+    return checkpoint
+
+checkpoint = load_existing_results(result_save_fpath)
+
 # ------------ Evaluation loop ------------
-result_list = []
+new_results = []
 internet_issues = []
-correct = 0
-total = 0
 
 for sample in tqdm(sample_list):
     sample_id = sample["id"]
+
+    # Skip if already processed
+    if sample_id in checkpoint:
+        print(f"*****{sample_id}***** (skipped, already in checkpoint)")
+        continue
+
     print(f"*****{sample_id}*****")
 
     headers_str = json.dumps(sample["solution"]["header"])
@@ -136,24 +154,20 @@ for sample in tqdm(sample_list):
         continue
 
     # Parse model output
+    answer = None
     try:
         pred_raw = extract_json_list(response)
         if pred_raw is None:
             print("  WARN: could not extract JSON list from response")
-            answer = None
         else:
             pred_norm = normalize_prediction(pred_raw)
             gold_norm = normalize_solution(sample["solution"])
             match = compare_dicts(gold_norm, pred_norm)
             answer = pred_norm if match else pred_raw
-            if match:
-                correct += 1
-            else:
+            if not match:
                 print(f"  WRONG: gold={gold_norm}  pred={pred_norm}")
-            total += 1
     except Exception as e:
         print(f"  PARSE ERROR: {e}")
-        answer = None
 
     result = {
         "id": sample_id,
@@ -162,11 +176,14 @@ for sample in tqdm(sample_list):
         "raw_output": response,
         "answer": answer,
     }
-    result_list.append(result)
+    new_results.append(result)
 
-# Attach correctness and recompute exact counts from result_list
+# Merge checkpoint + new results
+all_results = list(checkpoint.values()) + new_results
+
+# Recompute is_correct for all results (consistency if logic changed)
 size_stats = {}
-for r in result_list:
+for r in all_results:
     orig = next(s for s in sample_list if s["id"] == r["id"])
     gold_norm = normalize_solution(orig["solution"])
     if isinstance(r.get("answer"), list):
@@ -182,13 +199,18 @@ for r in result_list:
     if r["is_correct"]:
         size_stats[sz]["correct"] += 1
 
+# Save merged results
 with open(result_save_fpath, "w", encoding='utf-8') as f:
-    json.dump(result_list, f, indent=2, ensure_ascii=False)
+    json.dump(all_results, f, indent=2, ensure_ascii=False)
 
 # Print summary
-total_correct = sum(r["is_correct"] for r in result_list)
-total_all = len(result_list)
-print(f"\nbaseline {baseline} on ZebraLogic done! result saved in {result_save_fpath}")
+total_correct = sum(r["is_correct"] for r in all_results)
+total_all = len(all_results)
+new_count = len(new_results)
+print(f"\nbaseline {baseline} on ZebraLogic done!")
+print(f"  Previously completed: {len(checkpoint)}")
+print(f"  Newly tested:         {new_count}")
+print(f"  Total:                {total_all}")
 print(f"Accuracy: {total_correct}/{total_all} = {total_correct / total_all * 100:.2f}%")
 print("\nPer-size accuracy:")
 for sz in sorted(size_stats, key=lambda x: [int(v) for v in x.split('*')]):
