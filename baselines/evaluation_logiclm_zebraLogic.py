@@ -24,7 +24,7 @@ import argparse
 # ------------ SETTING ------------
 parser = argparse.ArgumentParser(description="Logic-LM evaluation for ZebraLogic")
 parser.add_argument("--llm", type=str, default="dpsk-reasoner",
-                    choices=["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini"],
+                    choices=["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini", "dpsk-v4-flash", "dpsk-v4-pro"],
                     help="Model name (must match a key in LLM_CONFIG)")
 args = parser.parse_args()
 

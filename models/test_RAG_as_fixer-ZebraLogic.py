@@ -23,7 +23,7 @@ from datetime import datetime
 # ------------ SETTING ------------
 parser = argparse.ArgumentParser(description="Test RAG-as-fixer on ZebraLogic")
 parser.add_argument("--llm", type=str, default="dpsk-chat",
-                    choices=["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini"],
+                    choices=["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini", "dpsk-v4-flash", "dpsk-v4-pro"],
                     help="Model name (must match a key in LLM_CONFIG)")
 args = parser.parse_args()
 
@@ -41,13 +41,13 @@ result_jsonl_path = os.path.join(result_save_dir, f"result-{llm_name}.jsonl")
 gen_prompt_path = "./prompts/z3program_generation_ZebraLogic.txt"
 
 
-llm = OpenAIModel(LLM_CONFIG[llm_name], max_new_tokens=2048, temp=0)
+llm = OpenAIModel(LLM_CONFIG[llm_name], max_new_tokens=5000, temp=0)
 
 if not LLM_CONFIG[llm_name].is_reasoning:
     dspy.configure(lm=dspy.LM(model=LLM_CONFIG[llm_name].llm_name,
                   api_base=LLM_CONFIG[llm_name].base_url,
                   api_key=LLM_CONFIG[llm_name].api_key,
-                  max_tokens=2048, temperature=0))
+                  max_tokens=5000, temperature=0))
 else:
     dspy.configure(lm=dspy.LM(model=LLM_CONFIG[llm_name].llm_name,
                   api_base=LLM_CONFIG[llm_name].base_url,
