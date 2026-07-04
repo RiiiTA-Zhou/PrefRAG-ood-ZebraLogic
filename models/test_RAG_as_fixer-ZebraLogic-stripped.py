@@ -33,8 +33,8 @@ parser = argparse.ArgumentParser(description="Test stripped-query RAG on ZebraLo
 parser.add_argument("--llm", type=str, default="dpsk-v4-flash",
                     choices=["gpt-4o", "dpsk-chat", "dpsk-reasoner", "o3-mini", "dpsk-v4-flash", "dpsk-v4-pro"],
                     help="Model name (must match a key in LLM_CONFIG)")
-parser.add_argument("--num_samples", type=int, default=5,
-                    help="Number of test samples to process (default: 5)")
+parser.add_argument("--num_samples", type=int, default=None,
+                    help="Number of test samples to process (default: all)")
 args = parser.parse_args()
 
 embedder_config = LLM_CONFIG["embedder"]
@@ -248,7 +248,7 @@ internet_issues = []
 
 # Only process the first `num_samples` samples (or fewer if checkpoint already has them)
 samples_to_process = test_data[:num_samples]
-print(f"\nProcessing first {len(samples_to_process)} samples "
+print(f"\nProcessing {len(samples_to_process)} samples "
       f"(checkpoint has {len(checkpoint)} already done)...\n")
 
 for sample in tqdm(samples_to_process):
