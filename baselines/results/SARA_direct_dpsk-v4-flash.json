@@ -1,0 +1,1467 @@
+[
+  {
+    "id": "s151_d_1_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_1_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_3_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_3_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_5_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_5_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_a_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_a_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_c_2_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_c_2_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_1_D_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section152"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_1_D_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section152"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_C_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_C_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_G_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_G_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_H_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_H_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_iv_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_iv_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_v_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_v_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_b_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_b_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_b_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_b_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_c_iii_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_c_iii_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_c_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_c_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_ii_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_ii_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s1_d_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_a_1_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_a_1_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section2"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_II_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_II_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152",
+      "section2"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_I_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_I_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152",
+      "section2"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_ii_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_ii_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section2"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_3_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section2"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_3_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section2"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3301_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3301",
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3301_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3301",
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s3306_a_1_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_a_1_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_a_3_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_a_3_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_b_2_C_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_b_2_C_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_10_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_10_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_11_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_11_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_16_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_16_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_1_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": false
+  },
+  {
+    "id": "s3306_c_1_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s3306_c_6_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_6_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_7_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_7_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_b_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section63"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_b_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_2_A_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_2_A_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_2_A_ii_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_2_A_ii_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_6_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_6_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_6_D_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": false
+  },
+  {
+    "id": "s63_c_6_D_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_7_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_7_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_f_1_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_f_1_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_f_2_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section63"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_f_2_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section63"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s68_a_2_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63",
+      "section68"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s68_a_2_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63",
+      "section68"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s68_b_1_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section68"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s68_b_1_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section68"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s68_b_1_C_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section68"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s68_b_1_C_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section68"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s7703_a_1_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section7703"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s7703_a_1_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section7703"
+    ],
+    "raw_output": "Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s7703_b_2_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section7703"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s7703_b_2_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section7703"
+    ],
+    "raw_output": "Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_28",
+    "answer_type": "numerical",
+    "gold_answer": "$344848",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "344428",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_30",
+    "answer_type": "numerical",
+    "gold_answer": "$249",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "249",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_31",
+    "answer_type": "numerical",
+    "gold_answer": "$6621",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "6620",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_34",
+    "answer_type": "numerical",
+    "gold_answer": "$2684",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "2684.25",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_43",
+    "answer_type": "numerical",
+    "gold_answer": "$8439",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "8439.16",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_46",
+    "answer_type": "numerical",
+    "gold_answer": "$17399",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "$17,399.16",
+    "answer": "$17399",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_48",
+    "answer_type": "numerical",
+    "gold_answer": "$33068",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "33068.48",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_49",
+    "answer_type": "numerical",
+    "gold_answer": "$82819",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_53",
+    "answer_type": "numerical",
+    "gold_answer": "$206332",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "206332.05",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_57",
+    "answer_type": "numerical",
+    "gold_answer": "$4073",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "4072.80",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_68",
+    "answer_type": "numerical",
+    "gold_answer": "$28292",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "$28,291.79",
+    "answer": "$28291",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_69",
+    "answer_type": "numerical",
+    "gold_answer": "$264225",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "$264,225",
+    "answer": "$264225",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_75",
+    "answer_type": "numerical",
+    "gold_answer": "$8883",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "8883",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_77",
+    "answer_type": "numerical",
+    "gold_answer": "$6449",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "$6,449",
+    "answer": "$6449",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_78",
+    "answer_type": "numerical",
+    "gold_answer": "$14470",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "11586.72",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_82",
+    "answer_type": "numerical",
+    "gold_answer": "$986",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "$985",
+    "answer": "$985",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_85",
+    "answer_type": "numerical",
+    "gold_answer": "$2477",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "2477",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_9",
+    "answer_type": "numerical",
+    "gold_answer": "$10598",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "$10597.68",
+    "answer": "$10597",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_90",
+    "answer_type": "numerical",
+    "gold_answer": "$96641",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_93",
+    "answer_type": "numerical",
+    "gold_answer": "$102150",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  }
+]

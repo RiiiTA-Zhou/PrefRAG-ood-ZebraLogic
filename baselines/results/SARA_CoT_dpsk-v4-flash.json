@@ -1,0 +1,1467 @@
+[
+  {
+    "id": "s151_d_1_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "The exemption amount under section 151(d)(1) is generally $2,000 unless otherwise provided. No facts indicate that any exception (such as the phaseout or the special rule for 2018-2025) applies for 2015. Since Alice is entitled to an exemption under section 151(b) and no other taxpayer can claim her as a dependent, her exemption amount is $2,000, not $0. Therefore, the statement contradicts the code.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_1_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "The facts indicate Alice is entitled to a personal exemption for herself in 2015, and no other taxpayer claims her as a dependent. Under §151(d)(1), the exemption amount is generally $2,000, and no applicable exception or phaseout is mentioned that would reduce it. Therefore, the exemption amount is $2,000.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_3_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "The statement claims that Alice's exemption amount is reduced to $1,900, but applying the 10% applicable percentage to the $2,000 exemption amount yields a reduction of $200, resulting in $1,800. Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_3_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "The statement that Alice's exemption amount is reduced to $1,800 under section 151(d)(3)(A) is consistent with the code. The base exemption amount is $2,000, and a 10% applicable percentage reduces it by $200, resulting in $1,800. The facts indicate that the applicable percentage has been correctly computed, and the phaseout applies. Therefore, the statement is entailed.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_5_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "The statement claims that Alice's exemption amount is $2000 under section 151(d)(5) for the year 2018. However, section 151(d)(5) explicitly sets the exemption amount to zero for taxable years beginning after December 31, 2017, and before January 1, 2026. Therefore, the exemption amount cannot be $2000.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s151_d_5_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151"
+    ],
+    "raw_output": "The correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_a_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The statement that Bob is a dependent of Alice under section 152(a) for 2014 is contradicted by the given fact that Bob is a qualifying child of Charlie for the same year. Under section 152(d)(1)(D), a qualifying relative cannot be a qualifying child of any other taxpayer for that taxable year. Since Bob is a qualifying child of Charlie, he cannot be a qualifying relative of Alice. Additionally, there is no information to establish that Bob is a qualifying child of Alice (e.g., abode, age, etc.), so the claim is unsupported and inconsistent with the code.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_a_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The question states that Bob satisfies section 152(c)(1), which defines a qualifying child. Under section 152(a), a dependent is either a qualifying child or a qualifying relative. Since Bob meets the qualifying child criteria, he qualifies as a dependent under section 152(a). No exceptions under section 152(b) are mentioned or apply based on the facts. Therefore, the statement that Bob is a dependent of Alice for 2015 is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_c_2_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Bob is Alice's brother, which falls under section 152(c)(2)(B), not (A). The statement specifically claims a relationship under subsection (A), which is incorrect.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_c_2_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "Answer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_1_D_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section152"
+    ],
+    "raw_output": "The statement that \"Section 152(d)(1)(D) applies to Bob for the year 2015\" means that Bob satisfies the condition in that subsection, which requires that he not be a qualifying child of any taxpayer. However, the facts state that Bob is a dependent of Alice under section 152(c) (qualifying child) for 2015. Therefore, Bob is a qualifying child, so he does not meet the condition in section 152(d)(1)(D). The statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_1_D_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section152"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "s152_d_2_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The statement claims that Alice bears a relationship to Bob under section 152(d)(2)(A). However, section 152(d)(2)(A) refers to \"a child or a descendant of a child,\" which does not include a brother. A brother is covered under section 152(d)(2)(B). Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The statement is that Alice bears a relationship to Bob under section 152(d)(2)(A). Section 152(d)(2)(A) defines a qualifying relative as one who is a child or descendant of a child of the taxpayer. Since Bob is Alice's father, Alice is Bob's child, so she meets the relationship requirement. Therefore, the statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_C_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The statement claims that Alice bears a relationship to Bob under section 152(d)(2)(C), which defines a qualifying relative as \"the father or mother, or an ancestor of either.\" Alice married Charlie, Bob's father, making her Bob's stepmother. However, stepmother is explicitly covered under section 152(d)(2)(D) (\"A stepfather or stepmother\"), not under (C). Therefore, Alice does not qualify as a “mother” under (C) for purposes of the relationship test. The statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_C_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The statement that Alice bears a relationship to Bob under section 152(d)(2)(C) is correct because a mother is a parent, which is explicitly listed in that provision.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_G_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The question asks whether Alice bears a relationship to Bob under section 152(d)(2)(G) for the year 2018. Section 152(d)(2)(G) lists relationships by marriage: son-in-law, daughter-in-law, father-in-law, mother-in-law, brother-in-law, or sister-in-law. The facts state that Alice and Bob are not related and have no relatives married to one another, meaning no marital relationship exists between them or through their relatives. Therefore, they do not qualify under (G). The statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_G_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The relationship of \"daughter-in-law\" is explicitly listed in section 152(d)(2)(G). Since Alice is married to Bob, and Charlie is Bob's father, Alice is Charlie's daughter-in-law. This relationship exists for the year 2018 regardless of when the marriage occurred or when Charlie became Bob's father. Therefore, the statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_H_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The statement claims that Alice bears a relationship to Bob under section 152(d)(2)(H) for 2015. However, subsection (H) requires that the individual have the same principal place of abode as the taxpayer and be a member of the taxpayer's household. The facts state that Alice and Bob live in separate houses in 2015, so they do not share a principal place of abode. Therefore, the condition for (H) is not met, and the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s152_d_2_H_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152"
+    ],
+    "raw_output": "The statement is entailed because Alice and Bob are not married, and they have lived together since 2014, so for the taxable year 2018, Alice shares the same principal place of abode with Bob and is a member of his household, satisfying the conditions of section 152(d)(2)(H).\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_iv_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The statement claims that Alice's tax is calculated under section 1(a)(iv), which applies to taxable income over $140,000 but not over $250,000. However, Alice's taxable income is $615,572, which exceeds $250,000, so the applicable bracket is section 1(a)(v). Therefore, the reference to section 1(a)(iv) is incorrect.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_iv_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Alice is a surviving spouse, so section 1(a) applies. Her taxable income is $236,422, which falls into bracket (iv): over $140,000 but not over $250,000. The tax is $35,928.50 plus 36% of the excess over $140,000. The excess is $96,422, and 36% of that is $34,711.92. Adding gives $70,640.42, which rounds to $70,640. The statement matches.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Alice is not married, not a surviving spouse, and not a head of household, so she falls under section 1(c) (unmarried individuals). The tax calculation given ($65,445) correctly matches the computation under section 1(c), not section 1(a). Therefore, the statement that she pays this amount under section 1(a) is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Alice is a surviving spouse, so section 1(a) applies. Her taxable income is $70,117. This falls into the second bracket (over $36,900 but not over $89,150). The tax is $5,535 plus 28% of the excess over $36,900. Excess = $70,117 - $36,900 = $33,217. 28% of $33,217 = $9,300.76. Total = $5,535 + $9,300.76 = $14,835.76, which rounds to $14,836. The statement matches, so it is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_v_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "Alice is a surviving spouse, so section 1(a) applies. Her taxable income is $25,561, which is not over $36,900, so the correct bracket is subsection (i) (15% of taxable income). The tax is $3,834.15, which rounds to $3,834. However, the statement claims this tax is under section 1(a)(v), which applies only to incomes over $250,000. Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_a_2_v_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The tax for a surviving spouse with taxable income of $615,572 under §1(a)(v) is $75,528.50 plus 39.6% of the excess over $250,000. The excess is $365,572, and 39.6% of that is $144,766.512, resulting in a total of $220,295.012, which rounds to $220,295. Thus, the statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_b_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The statement claims that Alice's tax is $442,985 under section 1(b)(i), but section 1(b)(i) applies only to taxable income not over $29,600. Alice's taxable income is $1,172,980, which is far above that threshold. The correct tax amount ($442,985) falls under section 1(b)(v) for income over $250,000, not (i). Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_b_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The taxable income of $9,560 falls within the first bracket for head of household (not over $29,600), so the tax is 15% of $9,560, which equals $1,434. The statement is consistent with the code.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_b_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "The statement asserts that Alice's tax under section 1(b) (head of household) is $207,772. However, Alice is married and files a separate return, which places her under section 1(d) (married individuals filing separate returns). Her taxable income of $554,313 falls into the highest bracket of section 1(d), yielding a tax of $207,772 (as calculated). Section 1(b) applies only to heads of households, which Alice is not. Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_b_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_c_iii_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The correct answer is: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_c_iii_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The taxpayer is unmarried, not a surviving spouse, and not a head of household, so section 1(c) applies. Her taxable income of $102,268 falls into bracket (iii) (over $53,500 but not over $115,000). The tax is $12,107 plus 31% of the excess over $53,500. Excess = $102,268 - $53,500 = $48,768. 31% of $48,768 = $15,118.08. Total = $12,107 + $15,118.08 = $27,225.08, which rounds to $27,225. The statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_c_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "Applying the law: Alice is married and files a joint return, so the applicable section is §1(a) (married individuals filing joint returns), not §1(c) (unmarried individuals). The statement explicitly says the tax is computed \"under section 1(c),\" which is incorrect for a married couple filing jointly. Therefore, the claim contradicts the statute.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_c_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The tax for an unmarried individual under §1(c) with taxable income of $210,204 is calculated as follows: the income falls into the fourth bracket (over $115,000 but not over $250,000), so the tax is $31,172 plus 36% of the excess over $115,000. The excess is $210,204 - $115,000 = $95,204. 36% of $95,204 is $34,273.44. Adding $31,172 gives $65,445.44, not $65,445. Therefore, the statement that Alice has to pay $65,445 is incorrect.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s1_d_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "The statement claims that Alice pays $17,123 in taxes under section 1(d)(i). However, section 1(d)(i) applies only to taxable income not over $18,450, and Alice's taxable income is $67,285. Her tax is correctly computed under section 1(d)(iii), not (i). Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "The correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_ii_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "The correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": false
+  },
+  {
+    "id": "s1_d_ii_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "The facts state Alice is married and files separately with taxable income of $28,864. Under §1(d)(ii), the tax is $2,767.50 plus 28% of the excess over $18,450. The excess is $10,414; 28% of that is $2,915.92; total $5,683.42, which rounds to $5,683. The statement matches.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section1"
+    ],
+    "raw_output": "The statement claims that Alice, a surviving spouse, must pay $14,836 in taxes under section 1(d). However, section 1(d) applies only to married individuals filing separate returns. As a surviving spouse, Alice is subject to section 1(a), which imposes a different tax calculation. Under section 1(a), her taxable income of $70,117 results in a tax of approximately $14,836, but that amount is computed under section 1(a), not 1(d). Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s1_d_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section1",
+      "section7703"
+    ],
+    "raw_output": "The correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_a_1_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "Section 2(a)(1)(B) applies only to a surviving spouse, which requires the taxpayer's spouse to have died during either of the two years immediately preceding the taxable year. For the taxable year 2020, the spouse (Alice) died on July 9, 2021, which is after 2020. Therefore, Bob does not meet the condition of being a surviving spouse in 2020, and section 2(a)(1)(B) does not apply.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_a_1_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section2"
+    ],
+    "raw_output": "The statement is that Section 2(a)(1)(B) applies to Bob in 2016. Bob's spouse Alice died in 2014, which is within the two years preceding 2016, satisfying Section 2(a)(1)(A). Bob maintained a home where he and his son Charlie lived, and Charlie is a dependent (son) for whom Bob is entitled to a deduction under Section 151 in 2016. Therefore, the condition in Section 2(a)(1)(B) is met. No limitations (remarriage or joint return issue) apply. Thus, the statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_II_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "The statement",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "s2_b_1_A_i_II_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section152",
+      "section2"
+    ],
+    "raw_output": "The facts establish that Charlie married Dan in 2018 and that Section 152(b)(2) applies to Charlie as a dependent of Bob for 2018, meaning Charlie filed a joint return with Dan and thus is not treated as Bob's dependent. Under Section 2(b)(1)(A)(i), a qualifying child is disqualified for head-of-household status if the child is married at the close of the taxpayer's taxable year and is not a dependent by reason of Section 152(b)(2). Since both conditions are met for Bob and Charlie in 2018, Section 2(b)(1)(A)(i)(II) correctly applies.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_I_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "The provision in Section 2(b)(1)(A)(i)(I) disqualifies a qualifying child if the child is married at the close of the taxpayer's taxable year. Charlie married Dan on February 14, 2018, so at the close of 2017, Charlie was not married. Therefore, the provision does not apply to Charlie in 2017.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_I_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "The correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section152",
+      "section2"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "s2_b_1_A_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "The statement is that Section 2(b)(1)(A)(i) applies to Charlie in 2018. Under the facts, Bob is the taxpayer, and Charlie is his son, born in 2000, making him 18 in 2018. Bob is unmarried (Alice died in 2014, more than two years prior) and not a surviving spouse. Bob maintains the home where he and Charlie live, and Charlie meets the qualifying child requirements (age under 25, same abode for more than half the year, not married, no joint return). Therefore, Charlie qualifies as a child under that provision, so the section applies.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_ii_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section2"
+    ],
+    "raw_output": "Section 2(b)(1)(A)(ii) applies only if Charlie qualifies as a dependent of Bob for 2017. Under §152, Charlie cannot be a qualifying child because he filed a joint return with his spouse in 2017 (violating §152(c)(1)(E)), and cannot be a qualifying relative because he earned $312,489 in 2017 (violating §152(d)(1)(B) requiring no income). Therefore, Charlie is not a dependent, and §2(b)(1)(A)(ii) does not apply.\n\nContradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_1_A_ii_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section2"
+    ],
+    "raw_output": "Charlie is Bob's brother and meets the criteria for a qualifying child under §152(c), including age and residency requirements. Therefore, for head of household purposes under §2(b)(1)(A), Charlie falls under clause (i) (qualifying child) rather than clause (ii) (other dependent). The statement that §2(b)(1)(A)(ii) applies to Charlie is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s2_b_3_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section2"
+    ],
+    "raw_output": "The statement \"Section 2(b)(3)(A) applies to Bob in 2019\" is contradicted because Bob ceased being a nonresident alien on February 12, 2018, and was not a nonresident alien at any time during 2019. Section 2(b)(3)(A) only applies if the taxpayer is a nonresident alien at any time during the taxable year, which is not the case here.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s2_b_3_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section2"
+    ],
+    "raw_output": "Section 2(b)(3)(A) provides that a taxpayer shall not be considered a head of a household if at any time during the taxable year the taxpayer is a nonresident alien. The facts state that Bob was a nonresident alien until February 12, 2018. Therefore, during the 2018 taxable year, Bob was a nonresident alien for part of the year. Consequently, Section 2(b)(3)(A) applies to Bob in 2018.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3301_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3301",
+      "section3306"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "s3301_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3301",
+      "section3306"
+    ],
+    "raw_output": "The excise tax under §3301 is 6% of \"total wages (as defined in section 3306(b)).\" Section 3306(b)(1) excludes remuneration in excess of $7,000 per employee per calendar year from the definition of wages. The facts provide only the total amount of wages paid ($453,009), not the number of employees or the distribution of wages. Without this information, it is impossible to determine the taxable wages after applying the $7,000 cap. Therefore, the stated tax of $27,181 (which equals 6% of the total wages paid) cannot be validated under the code; it likely ignores the cap and is unsupported by the given facts, making the statement contradictory.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s3306_a_1_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The statement claims that Section 3306(a)(1)(B) applies to Alice for 2017. This section defines an employer as a person who, on each of some 10 days during the calendar year, each day being in a different calendar week, employed at least one individual. Alice employed Bob on ten specific dates, but December 1 and December 2 fall within the same calendar week (the week starting November 26). Therefore, the days are not in ten different calendar weeks; only nine distinct weeks are represented. The condition is not satisfied, so the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_a_1_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_a_3_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The statement claims that Section 3306(a)(3) applies to Alice for 2017. Section 3306(a)(3) defines an \"employer\" for domestic service as a person who pays cash wages of $1,000 or more for such service. Here, Alice received $4,200 in cash from Bob for domestic service; she did not pay any cash for domestic service. Therefore, Alice is not an employer under this provision. The provision applies to Bob, not Alice. Thus, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_a_3_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_b_2_C_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Section 3306(b)(2) excludes from wages certain payments made on account of sickness, accident disability, or death. The payment into a retirement fund is not on account of death, so subsection (C) does not apply. Therefore, the statement is false.\n\nThe correct answer is: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_b_2_C_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The life insurance payment made by Alice to Bob is a payment on account of death, which falls under the exclusion from wages in §3306(b)(2)(C). Therefore, the provision applies to that payment.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_10_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The exclusion under §3306(c)(10)(B) applies only when the service is performed by a patient of the hospital. Alice performed the service in March 2017, after her patient status ended on February 20, 2017. Therefore, she was not a patient at the time of service, and the exclusion does not apply.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_10_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The facts do not establish that Alice performed the services while she was a patient. Section 3306(c)(10)(B) excludes only service performed by a patient of the hospital. Since the timing of the services relative to her patient status is unknown, the condition is not satisfied, and the statement that the section applies is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s3306_c_11_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The correct answer is: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_11_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Section 3306(c)(11) excludes from the definition of \"employment\" any service performed in the employ of a foreign government. Alice is an employee of the Canadian Government, which is a foreign government, and she performs her services in Toronto, Canada. Therefore, her employment falls within the exclusion of §3306(c)(11). The statement that this section applies is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_16_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The statement that Section 3306(c)(16) applies to Alice's employment is incorrect because she is employed by the U.S. Government, not an international organization. Section 3306(c)(6) excludes government employment, not (c)(16).\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_16_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Section 3306(c)(16) excludes from the definition of \"employment\" any service performed in the employ of an international organization. The International Monetary Fund is an international organization. Therefore, Alice's work for the IMF falls under this exception.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_1_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Section 3306(c)(1) generally excludes agricultural labor from the definition of \"employment\" unless both conditions (A) and (B) are met. Condition (B) requires that the agricultural labor is not performed by an alien admitted under sections 214(c) and 101(a)(15)(H) of the Immigration and Nationality Act. Since Bob is such an alien, condition (B) is not satisfied, meaning the agricultural labor is excluded. Therefore, section 3306(c)(1)(B) applies to make the exclusion effective.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": false
+  },
+  {
+    "id": "s3306_c_1_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Section 3306(c)(1) generally excludes agricultural labor from the definition of \"employment,\" but it includes such labor if both conditions (A) and (B) are met. Condition (B) states that the labor is not performed by an alien admitted under specific immigration provisions. Bob is an American citizen, so the labor is not performed by such an alien, satisfying condition (B). Therefore, section 3306(c)(1)(B) applies to the situation.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_6_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The statement claims that section 3306(c)(6) applies to Alice's employment situation in 2017. Section 3306(c)(6) excludes from the definition of \"employment\" any service performed in the employ of the United States Government. However, Alice was employed by Nando's Chicken, a private company, not the U.S. government. Therefore, the exception does not apply.\n\nThe correct answer is: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_6_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Section 3306(c)(6) explicitly excludes from the definition of \"employment\" any service performed in the employ of the United States Government. Since Alice is an employee of the United States Government, her employment situation falls under this exception. Therefore, the statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_7_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The statement claims that Section 3306(c)(7) applies to Alice's employment situation. Section 3306(c)(7) excludes service performed for a state or political subdivision from the definition of \"employment.\" However, Alice works for Bertha's Mussels, a private business in Maryland, not for a state or government entity. Therefore, (c)(7) does not apply.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_7_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The relevant provision is §3306(c)(7), which excludes from the definition of \"employment\" any service performed in the employ of a State or its political subdivisions. Alice is an employee of the State of Maryland, so her service falls under this exclusion. Therefore, the statement that §3306(c)(7) applies to her employment situation is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "Section 3306(c) defines \"employment\" as any service performed within the United States or, under subparagraph (B), performed outside the United States by a U.S. citizen as an employee of an American employer. Here, Bob is a U.S. citizen, but Alice is a citizen of Venezuela, not an American employer. Therefore, the service performed in Venezuela by Bob for Alice does not fall within the scope of section 3306(c)(B). The statement that this subsection applies is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s3306_c_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section3306"
+    ],
+    "raw_output": "The facts state that Bob is an American citizen performing services in Venezuela (outside the United States) for Alice, an American employer. Section 3306(c)(B) specifically includes such services in the definition of \"employment\" unless an exception applies. No exception is indicated (Venezuela is not a contiguous country with an agreement, and no other exclusion is relevant). Therefore, the provision applies.\n\nThe correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_b_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section63"
+    ],
+    "raw_output": "The statement claims that Alice's taxable income under section 63(b) is $31,400. However, based on the given facts, Alice's adjusted gross income is $33,200, her standard deduction is $2,000, and she has no deduction under section 151. Under section 63(b), taxable income equals adjusted gross income minus the standard deduction and personal exemptions, which yields $33,200 - $2,000 = $31,200, not $31,400. Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_b_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section63"
+    ],
+    "raw_output": "The facts state that Alice's adjusted gross income (or gross income, interpreted as such) is $33,200, and she is allowed a standard deduction of $2,000 under section 63(c)(1). She has no deduction under section 151 (personal exemption). She does not itemize. Under section 63(b), taxable income equals adjusted gross income minus the standard deduction and any personal exemptions. Therefore, taxable income = $33,200 - $2,000 = $31,200. The statement matches this calculation.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_2_A_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "Section 63(c)(2)(A)(i) applies only to taxpayers filing a joint return or a surviving spouse. Since Alice and Bob are married and file separate returns, this provision does not apply to Alice. Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_2_A_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The facts state that Alice and Bob are married and file a joint return for 2017. Section 63(c)(2)(A)(i) specifies that the basic standard deduction for a joint return is 200% of the amount under subparagraph (C). Since they file jointly, this provision applies to Alice. Therefore, the statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_2_A_ii_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The statement that Section 63(c)(2)(A)(ii) applies to Alice is false because she filed a joint return with her spouse, making her fall under Section 63(c)(2)(A)(i) for a joint return, not (A)(ii) for a surviving spouse.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_2_A_ii_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The statement \"Section 63(c)(2)(A)(ii) applies to Alice in 2017\" is correct because Alice is a surviving spouse, and that subsection specifically governs the basic standard deduction for surviving spouses. The fact that she earned $33,200 is irrelevant to the applicability of the provision.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_6_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The facts indicate that Alice was a nonresident alien only from August 23, 2015, to September 15, 2016. For the 2017 tax year, there is no information showing she remained a nonresident alien. Therefore, Section 63(c)(6)(B), which applies to nonresident alien individuals, does not apply to Alice for 2017. The statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_6_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The facts state that Alice was a nonresident alien for the entire 2017 taxable year. Section 63(c)(6)(B) explicitly provides that a nonresident alien individual's standard deduction is zero. Therefore, the provision applies to Alice in 2017.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_6_D_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The Walter Brown Family Trust II is a trust, and Section 63(c)(6)(D) explicitly applies to trusts, making the standard deduction zero for such entities. The fact that it was considered a business trust does not change that it is a trust for tax purposes. Therefore, the statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": false
+  },
+  {
+    "id": "s63_c_6_D_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The provision §63(c)(6)(D) applies to estates, trusts, common trust funds, or partnerships, setting the standard deduction to zero. The Walter Brown Family Trust II is explicitly described as a trust (a business trust) during the relevant period. Therefore, the provision applies to it for 1999.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_7_i_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The statement claims that under section 63(c)(7)(i), Alice's basic standard deduction as a head of household in 2019 is $4,400. However, section 63(c)(7)(i) explicitly substitutes \"$18,000\" for \"$4,400\" in subparagraph (B) for taxable years beginning after December 31, 2017, and before January 1, 2026. Since 2019 falls within that period, the correct basic standard deduction for a head of household is $18,000, not $4,400. Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_c_7_i_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The statement is correct because for taxable years 2018 through 2025, section 63(c)(7)(i) substitutes $18,000 for the $4,400 basic standard deduction amount for heads of households. Since Alice is a head of household in 2019, her basic standard deduction is $18,000.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_f_1_A_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The statement \"Section 63(f)(1)(A) applies to Bob in 2017\" is contradicted because Bob was born in 1955, making him 62 at the end of 2017, not yet 65, so he does not meet the age requirement for the additional standard deduction for the aged.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_f_1_A_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63"
+    ],
+    "raw_output": "The statement that Section 63(f)(1)(A) applies to Alice in 2017 is true because Alice was born on March 2, 1950, making her 67 years old by the end of 2017, which satisfies the condition of having attained age 65 before the close of the taxable year. The provision does not depend on filing status or other factors; it simply grants an additional amount for aged taxpayers. Therefore, the facts entail the application of this section.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s63_f_2_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section63"
+    ],
+    "raw_output": "The statement asserts that Section 63(f)(2)(B) applies to Alice with Bob as the spouse. Under that provision, the taxpayer is entitled to an additional amount for the spouse only if the spouse is blind and an additional exemption is allowable for the spouse under section 151(b). The facts confirm Alice is allowed an exemption for Bob under section 151(b), but there is no information that Bob is blind. Without Bob being blind, the condition of Section 63(f)(2)(B) is not satisfied. Therefore, the statement is false.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s63_f_2_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section63"
+    ],
+    "raw_output": "The facts state that Alice and Bob are married in 2017, Alice has been blind since 2014, and Bob is allowed an exemption for Alice under §151(b). Section 63(f)(2)(B) provides an additional standard deduction for a taxpayer's spouse if the spouse is blind at the close of the taxable year and an additional exemption is allowable for the spouse under §151(b). Both conditions are satisfied: Alice is blind at the close of 2017, and Bob is allowed the exemption. Therefore, §63(f)(2)(B) applies to Bob with Alice as his spouse.\n\nThe correct answer is: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s68_a_2_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section63",
+      "section68"
+    ],
+    "raw_output": "The applicable amount for a surviving spouse under §68(b)(1)(A) is $300,000. Alice's adjusted gross income of $295,192 does not exceed $300,000, so there is no excess. Therefore, no reduction applies under §68(a). The claimed reduction of $47,000 is incorrect.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s68_a_2_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section63",
+      "section68"
+    ],
+    "raw_output": "Under section 68, the reduction of itemized deductions is the lesser of (1) 3% of the excess of AGI over the applicable amount, or (2) 80% of the itemized deductions. Here, the excess is $277,192 - $275,000 = $2,192, so 3% of that is $65.76, which is far less than $48,000 (80% of $60,000). Therefore, the reduction is $65.76, not $48,000.\n\nThe correct answer is: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "s68_b_1_B_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section68"
+    ],
+    "raw_output": "The statement incorrectly applies section 68(b)(1)(B) to a surviving spouse. According to the facts, Alice is a surviving spouse, so the applicable amount should be $300,000 under section 68(b)(1)(A), not $275,000 under (B). Therefore, the statement contradicts the statute.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s68_b_1_B_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section68"
+    ],
+    "raw_output": "The applicable amount for a head of household under §68(b)(1)(B) is $275,000. Since Alice is a head of household in 2016, her applicable amount is $275,000. The statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s68_b_1_C_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section68"
+    ],
+    "raw_output": "Alice is a head of household for 2016. Section 68(b)(1) lists applicable amounts based on filing status: (A) for joint returns or surviving spouses, (B) for heads of households, (C) for unmarried individuals who are not heads of households or surviving spouses, and (D) for married individuals filing separately. Since Alice is a head of household, the applicable amount is under subsection (B), not (C). Therefore, the statement that section 68(b)(1)(C) applies to Alice is incorrect.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s68_b_1_C_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section68"
+    ],
+    "raw_output": "The facts state that Alice is not married, not a surviving spouse, and not a head of household in 2016. Section 68(b)(1)(C) specifies an applicable amount of $250,000 for such individuals. Since the taxable year 2016 is before the suspension period under section 68(f), the provision applies. Therefore, the statement is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s7703_a_1_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section7703"
+    ],
+    "raw_output": "The statement \"Section 7703(a)(1) applies to Alice for the year 2018\" is true because that section provides the general rule for determining marital status for all taxpayers, including Alice, for any taxable year. The special exception for a spouse's death applies only in the year of death (2017), not in 2018. Therefore, the rule applies as the default method for determining Alice's marital status in 2018.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": false
+  },
+  {
+    "id": "s7703_a_1_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section7703"
+    ],
+    "raw_output": "Section 7703(a)(1) provides the rule for determining marital status: as of the close of the taxable year, or at the time of death if the spouse dies during the year. For 2012, Alice and Bob were married on April 5, 2012, and Bob did not die until 2017. Therefore, the general rule applies to determine Alice's marital status for 2012. The statement that Section 7703(a)(1) applies to Alice for 2012 is correct.\n\nAnswer: Entailment",
+    "answer": "Entailment",
+    "is_correct": true
+  },
+  {
+    "id": "s7703_b_2_neg",
+    "answer_type": "contradiction",
+    "gold_answer": "Contradiction",
+    "statutes_used": [
+      "section151",
+      "section7703"
+    ],
+    "raw_output": "The statement \"Section 7703(b)(2) applies to Alice maintaining her home for the year 2018\" is false because the facts indicate that Alice furnished only 40% of the maintenance costs, which does not satisfy the requirement of furnishing over one-half of the cost of maintaining the household.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": true
+  },
+  {
+    "id": "s7703_b_2_pos",
+    "answer_type": "entailment",
+    "gold_answer": "Entailment",
+    "statutes_used": [
+      "section151",
+      "section7703"
+    ],
+    "raw_output": "The key condition in Section 7703(b) is that the individual must file a separate return. Since Alice and Bob file a joint return for 2018, Alice does not meet this requirement, so Section 7703(b) does not apply.\n\nAnswer: Contradiction",
+    "answer": "Contradiction",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_28",
+    "answer_type": "numerical",
+    "gold_answer": "$344848",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice's filing status is not specified, so we assume she is a single individual (unmarried) under §1(c). Her gross income is $921,324. She takes the standard deduction. For 2017, the standard deduction for a single individual is $3,000 (per §63(c)(2)(C)). The personal exemption amount is $2,000 (per §151(d)(1)), but due to the phaseout in §151(d)(3), her adjusted gross income ($921,324) exceeds the applicable amount for a single individual ($250,000 per §68(b)(C)). The excess is $671,324, which triggers a 100% reduction (the applicable percentage reaches 100%), so the exemption amount is zero. Thus, taxable income = $921,324 – $3,000 = $918,324.\n\nUnder §1(c) for unmarried individuals, taxable income over $250,000 falls into bracket (v): $79,772 plus 39.6% of the excess over $250,000. Excess = $918,324 – $250,000 = $668,324. Tax = $79,772 + (0.396 × $668,324) = $79,772 + $264,656.304 = $344,428.304, rounded to $344,428.\n\nAnswer: $344,428",
+    "answer": "$344428",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_30",
+    "answer_type": "numerical",
+    "gold_answer": "$249",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice must file as married filing separately (since she is married and files separately). Her adjusted gross income (AGI) is $6,662 (no adjustments). She takes the standard deduction. Under §63(c)(2)(C), the basic standard deduction for married individuals filing separately is $3,000. She is not a dependent, so no limitation under §63(c)(5). She also claims one personal exemption of $2,000 under §151(b) (no exemption for spouse because Bob has gross income). Thus, taxable income is $6,662 - $3,000 - $2,000 = $1,662.\n\nUnder §1(d), the first bracket for married individuals filing separate returns is 15% of taxable income not over $18,450. Therefore, tax = 15% × $1,662 = $249.30. Rounded to the nearest dollar, this is $249.\n\nAnswer: $249",
+    "answer": "$249",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_31",
+    "answer_type": "numerical",
+    "gold_answer": "$6621",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice's taxable income is $39,212. Under §1(d) for married individuals filing separate returns, the tax is calculated as: $2,767.50 + 28% of ($39,212 - $18,450) = $2,767.50 + 28% of $20,762 = $2,767.50 + $5,813.36 = $8,580.86.\n\nAnswer: $8,580.86",
+    "answer": "$8580",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_34",
+    "answer_type": "numerical",
+    "gold_answer": "$2684",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice's gross income is $22,895. She takes the standard deduction, so her taxable income is computed under §63(b) as adjusted gross income minus the standard deduction and personal exemption. Assuming no adjustments, adjusted gross income equals gross income. No information suggests she is a head of household or married, so she is an unmarried individual under §1(c). The standard deduction for an unmarried individual is $3,000 (§63(c)(2)(C)). The personal exemption is $2,000 (§151(d)(1)). Thus, taxable income = $22,895 - $3,000 - $2,000 = $17,895. Under §1(c)(i), tax is 15% of taxable income since $17,895 is not over $22,100. Tax = 0.15 × $17,895 = $2,684.25.\n\nAnswer: $2,684.25",
+    "answer": "$2684",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_43",
+    "answer_type": "numerical",
+    "gold_answer": "$8439",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "The taxable income for Alice and Bob filing jointly in 2017 is calculated as follows: total gross income ($23,191 + $34,081 = $57,272) minus the standard deduction for joint filers ($6,000) and two personal exemptions ($2,000 each, total $4,000), resulting in $47,272. Applying the tax brackets for married individuals filing jointly under §1(a), the tax is $5,535 plus 28% of the excess over $36,900, which is $5,535 + 0.28 × ($47,272 - $36,900) = $5,535 + $2,904.16 = $8,439.16, rounded to $8,439.\n\nAnswer: $8,439",
+    "answer": "$8439",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_46",
+    "answer_type": "numerical",
+    "gold_answer": "$17399",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "The taxable income is computed as gross income minus the standard deduction. For 2020, the standard deduction for married filing jointly is $24,000 (200% of $12,000 under §63(c)(7)). Personal exemptions are zero for 2020 under §151(d)(5). Thus, taxable income = $103,272 - $24,000 = $79,272. Under §1(a)(ii), the tax is $5,535 plus 28% of the excess over $36,900. The excess is $79,272 - $36,900 = $42,372. 28% of $42,372 = $11,864.16. Total tax = $5,535 + $11,864.16 = $17,399.16.\n\nAnswer: $17,399.16",
+    "answer": "$17399",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_48",
+    "answer_type": "numerical",
+    "gold_answer": "$33068",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Bob is not a surviving spouse (his spouse died in 2014, more than two years before 2018) and does not qualify as head of household because his child Charlie filed a joint return in 2018, making Charlie ineligible as a dependent under §152(b)(2). Bob is thus an unmarried individual under §1(c). His gross income is $132,268. For 2018, the standard deduction for a single filer is $12,000 (per §63(c)(2)(C) as modified by §63(c)(7)), and the personal exemption amount is zero (per §151(d)(5)). Taxable income = $132,268 - $12,000 = $120,268. Applying the tax brackets in §1(c): bracket (iv) applies (over $115,000 but not over $250,000). Tax = $31,172 + 36% × ($120,268 − $115,000) = $31,172 + 0.36 × $5,268 = $31,172 + $1,896.48 = $33,068.48, rounded to $33,068.\n\nAnswer: $33,068",
+    "answer": "$33068",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_49",
+    "answer_type": "numerical",
+    "gold_answer": "$82819",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice's filing status is unmarried (single) because no information indicates she qualifies as head of household or surviving spouse. Her adjusted gross income (AGI) is $264,215. She takes the standard deduction of $3,000 (for single filers under §63(c)(2)(C)). Her personal exemption is $2,000, but it is subject to phaseout because her AGI exceeds the applicable amount of $250,000 (for single filers under §68(b)(1)(C)). The excess is $14,215, which results in 6 increments of $2,500 (rounded up), reducing the exemption by 12% to $1,760. Taxable income is $264,215 - $3,000 - $1,760 = $259,455. Under §1(c)(v), the tax is $79,772 plus 39.6% of the excess over $250,000, which is $79,772 + 0.396 × $9,455 = $79,772 + $3,744.18 = $83,516.18, rounded to $83,516.\n\nAnswer: $83,516",
+    "answer": "$83516",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_53",
+    "answer_type": "numerical",
+    "gold_answer": "$206332",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "To compute Alice's tax for 2020, we apply the provided Internal Revenue Code sections. Alice and Charlie file jointly, so §1(a) (married individuals filing joint returns) applies. Their taxable income is gross income minus the standard deduction (they do not itemize). Under §63(c)(2)(A) and §63(c)(7) (for taxable years 2018–2025), the basic standard deduction for a joint return is 200% of the substituted amount of $12,000, i.e., $24,000. Personal exemptions are zero for 2020 per §151(d)(5). Thus taxable income = $604,312 − $24,000 = $580,312.\n\nUnder §1(a), this income falls into the highest bracket (over $250,000). The tax is $75,528.50 plus 39.6% of the excess over $250,000. Excess = $580,312 − $250,000 = $330,312. 39.6% of $330,312 = $130,803.552. Total tax = $75,528.50 + $130,803.552 = $206,332.052, rounded to the nearest dollar = $206,332.\n\nAnswer: $206,332",
+    "answer": "$206332",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_57",
+    "answer_type": "numerical",
+    "gold_answer": "$4073",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "The taxable income is computed as total gross income minus the standard deduction and personal exemptions. Alice and Bob file jointly, so they use the married filing jointly brackets under §1(a). Their combined income is $22,895 + $14,257 = $37,152. The standard deduction for a joint return under §63(c)(2)(A) is 200% of $3,000 = $6,000. Personal exemptions: each spouse qualifies for an exemption of $2,000 under §151(b) and (d)(1), totaling $4,000. Thus, taxable income = $37,152 – $6,000 – $4,000 = $27,152. This falls within the first bracket of §1(a)(i) (not over $36,900), so tax = 15% × $27,152 = $4,072.80.\n\nAnswer: $4,072.80",
+    "answer": "$4072",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_68",
+    "answer_type": "numerical",
+    "gold_answer": "$28292",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice's total gross income for 2018 is $113,209 (other payments) plus $4,500 (from Bob) = $117,709. With no information on filing status or dependents, the default filing status is single. For 2018, the standard deduction for a single individual is $12,000 (per §63(c)(7)), and personal exemptions are zero (per §151(d)(5)). Thus, taxable income is $117,709 - $12,000 = $105,709. Applying the single taxpayer brackets in §1(c): $105,709 falls into the third bracket (over $53,500 but not over $115,000), so tax is $12,107 plus 31% of the excess over $53,500. Excess = $105,709 - $53,500 = $52,209. 31% of",
+    "answer": "$113209",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_69",
+    "answer_type": "numerical",
+    "gold_answer": "$264225",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice's filing status for 2014 is unmarried (single), as no information indicates she is married or a head of household. Her gross income of $718,791 is treated as adjusted gross income. She takes the standard deduction, which under §63(c)(2)(C) is $3,000 for an unmarried individual. Personal exemptions are phased out entirely because her AGI exceeds $250,000 (the applicable amount for single filers under §68(b)), resulting in zero exemption amount per §151(d)(3). Thus, taxable income is $718,791 − $3,000 = $715,791. Applying §1(c) for unmarried individuals, the taxable income exceeds $250,000, so the tax is $79,772 plus 39.6% of the excess over $250,000. The excess is $465,791, and 39.6% of that is $184,453.236, giving a total tax of $264,225.236, which rounds to $264,225.\n\nAnswer: $264,225",
+    "answer": "$264225",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_75",
+    "answer_type": "numerical",
+    "gold_answer": "$8883",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_77",
+    "answer_type": "numerical",
+    "gold_answer": "$6449",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice's taxable income for 2023 is calculated as gross income minus the standard deduction. As a head of household, her standard deduction is $18,000 per §63(c)(7)(i). Gross income of $54,775 minus $18,000 equals $36,775. Using the head of household tax brackets in §1(b), her taxable income falls into bracket (ii): over $29,600 but not over $76,400. The tax is $4,440 plus 28% of the excess over $29,600. The excess is $36,775 - $29,600 = $7,175, and 28% of that is $2,009. Total tax is $4,440 + $2,009 = $6,449.\n\nAnswer: $6,449",
+    "answer": "$6449",
+    "is_correct": true
+  },
+  {
+    "id": "tax_case_78",
+    "answer_type": "numerical",
+    "gold_answer": "$14470",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_82",
+    "answer_type": "numerical",
+    "gold_answer": "$986",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Bob is an American citizen living in Venezuela, so his worldwide income is subject to U.S. tax. His only income is $11,571 from Alice. He takes the standard deduction and is not a dependent, so he is entitled to the personal exemption.\n\n- Filing status: Unmarried individual (no information suggests marriage or head of household).\n- Adjusted gross income: $11,571.\n- Standard deduction: $3,000 (under §63(c)(2)(C)).\n- Personal exemption: $2,000 (under §151(b) and §151(d)(1)).\n- Taxable income: $11,571 - $3,000 - $2,000 = $6,571.\n- Tax under §1(c)(i): 15% of $6,571 = $985.65.\n\nThus, Bob's tax for 2012 is $985.65.\n\nAnswer: $985.65",
+    "answer": "$985",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_85",
+    "answer_type": "numerical",
+    "gold_answer": "$2477",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Alice's taxable income for 2019 is $34,510. She qualifies as head of household because she maintains a home for her dependent nephew Bob. Under §63(c)(7) for 2019, the standard deduction for a head of household is $18,000. Thus, taxable income is $34,510 - $18,000 = $16,510. Applying §1(b)(i), the tax is 15% of $16,510 = $2,476.50.\n\nAnswer: $2,476.50",
+    "answer": "$2476",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_9",
+    "answer_type": "numerical",
+    "gold_answer": "$10598",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "The correct answer is $10,597.68.\n\n**Reasoning:**  \n- Alice and Bob are married and file jointly for 2018, so §1(a) applies.  \n- Combined gross income: $36,991 (Alice) + $41,990 (Bob) = $78,981.  \n- They take the standard deduction. For 2018, §63(c)(7) modifies the basic standard deduction: for a joint return, it is 200% of the amount under §63(c)(2)(C), which is substituted to $12,000, giving $24,000.  \n- Under §151(d)(5), the personal exemption amount is zero for 2018, so no deduction for exemptions.  \n- Taxable income = $78,981 - $24,000 = $54,981.  \n- Under §1(a)(ii), since $54,981 exceeds $36,900 but not $89,150, tax = $5,535 + 28% × ($54,981 - $36,900) = $5,535 + $5,062.68 = $10,597.68.",
+    "answer": "$10597",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_90",
+    "answer_type": "numerical",
+    "gold_answer": "$96641",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "Bob's status for 2018: Alice died in 2014, which is more than two years before 2018, so he does not qualify as a surviving spouse. He lives with his friend Charlie, but Charlie qualifies as a dependent only under §152(d)(2)(H) (unrelated household member), and §2(b)(3)(B) prevents using such a dependent to claim head of household status. Bob is not married, so his filing status is single (unmarried individual) under §1(c).\n\nFor 2018, the standard deduction for a single individual is $12,000 (per §63(c)(7)(ii)). The personal exemption amount is $0 (per §151(d)(5)). Bob’s adjusted gross income is $304,598, so his taxable income is $304,598 – $12,000 = $292,598.\n\nApplying the tax brackets for unmarried individuals under §1(c):\n- Income over $250,000 falls into bracket (v): $79,772 + 39.6% of the excess over $250,000.\n- Excess = $292,598 – $250,000 = $42,598.\n- 39.6% of $42,598 = 0.396 × 42,598 = $16,868.808.\n- Total tax = $79,772 + $16,868.808 = $96,640.808, rounded to $96,641.\n\n**Answer:** $96,641",
+    "answer": "$12000",
+    "is_correct": false
+  },
+  {
+    "id": "tax_case_93",
+    "answer_type": "numerical",
+    "gold_answer": "$102150",
+    "statutes_used": [
+      "section1",
+      "section2",
+      "section63",
+      "section68",
+      "section151",
+      "section152",
+      "section7703"
+    ],
+    "raw_output": "",
+    "answer": null,
+    "is_correct": false
+  }
+]
